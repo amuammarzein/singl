@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @State private var selectedTab: TabBarItem = .menu1
-    @EnvironmentObject var router: Router
+//    @EnvironmentObject var router: Router
     var body: some View {
         TabBarContainer(selection: $selectedTab) {
             ForEach(TabBarItem.allCases) { item in
@@ -24,10 +24,10 @@ struct HomeView: View {
                 }else if(item.title == "Vocal Test"){
                     VStack(){
                         if(selectedTab == .menu2){
-                            GetStartedView()
+                            UseHeadphonesViews()
                         }
                     }.tabBarItem(tab: item, selection: $selectedTab)
-                }else if(item.title == "Sing & Song"){
+                }else if(item.title == "Singer & Song"){
                     VStack(){
                         if(selectedTab == .menu3){
                             SongRecomendationView()
@@ -44,9 +44,9 @@ struct HomeView: View {
             }
         }.onAppear{
             taskManager.isDashboardTrue()
-            print("***")
-            print(router.path)
-            print(router.path.count)
+//            print("***")
+//            print(router.path)
+//            print(router.path.count)
         }
     }
 }
@@ -214,7 +214,7 @@ enum TabBarItem: Identifiable, Hashable, CaseIterable {
         switch self {
         case .menu1: return "Dashboard"
         case .menu2: return "Vocal Test"
-        case .menu3: return "Sing & Song"
+        case .menu3: return "Singer & Song"
         case .menu4: return "Converter"
         }
     }

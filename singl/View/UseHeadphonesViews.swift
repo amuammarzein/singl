@@ -33,7 +33,6 @@ struct UseHeadphonesViews: View {
                     Image(systemName: "headphones").foregroundColor(.white)  .font(.system(size: 100)).bold()
                     Text("Make sure to sing with headphones on for better result").foregroundColor(.white).font(.title3).bold()
                         .multilineTextAlignment(.center)
-                    
                     if(taskManager.isActive){
                         Button(
                             action:{

@@ -18,7 +18,7 @@ struct VocalTypeTestView: View {
         if(taskManager.isBack){
             UseHeadphonesViews()
         }else if(taskManager.isNext){
-            VocalRangesTestView()
+            VocalTypeTestResultViews()
         }else{
             VStack(alignment:.center){
                 HStack(spacing:0){
@@ -36,11 +36,8 @@ struct VocalTypeTestView: View {
                 if(taskManager.isActive){
                     Text("Great! in 3 seconds you will be redirected to the vocal range test menu").foregroundColor(.white).font(.title3).bold()
                         .multilineTextAlignment(.center)
-                }else if(taskManager.isTimer){
-                    Text("Start singing any song you like using your highest and lowest notes for 15 seconds").foregroundColor(.white).font(.title3).bold()
-                        .multilineTextAlignment(.center)
                 }else{
-                    Text("Press the mic button below to start the test").foregroundColor(.white).font(.title3).bold()
+                    Text("Start singing any song you like using your highest and lowest notes for 15 seconds").foregroundColor(.white).font(.title3).bold()
                         .multilineTextAlignment(.center)
                 }
                 Spacer()
@@ -72,15 +69,18 @@ struct VocalTypeTestView: View {
                 InputDevicePicker(device: tunerManager.initialDevice).opacity(0).frame(maxHeight:0)
                
                 if(taskManager.isTimer){
-                    ZStack(){
-                        Circle().frame(width:CGFloat(80+(40 * tunerManager.data.inputLevel))).foregroundColor(.white.opacity(0.3))
-                        VStack(){
-                            ZStack(){
-                                Circle().frame(width:80).foregroundColor(.white)
-                                Image(systemName: "mic.fill").foregroundColor(.black) .font(.system(size: 45))
+                    VStack(){
+                        Text(String(taskManager.timeRemaining)).foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
+                        ZStack(){
+                            Circle().frame(width:CGFloat(80+(40 * tunerManager.data.inputLevel))).foregroundColor(.white.opacity(0.3))
+                            VStack(){
+                                ZStack(){
+                                    Circle().frame(width:80).foregroundColor(.white)
+                                    Image(systemName: "mic.fill").foregroundColor(.black) .font(.system(size: 45))
+                                }
                             }
-                        }
-                    }.frame(height:120).opacity(taskManager.isActive ? 0 : 1)
+                        }.frame(height:120).opacity(taskManager.isActive ? 0 : 1)
+                    }
                 }else{
                     Button(
                         action:{
@@ -89,9 +89,12 @@ struct VocalTypeTestView: View {
                             taskManager.timeRemaining = tunerManager.data.singingDuration
                         }
                     ){
-                        ZStack(){
-                            Circle().frame(width:120).foregroundColor(.white)
-                            Image(systemName: "mic.fill").foregroundColor(.black)  .font(.system(size: 45))
+                        VStack(){
+                            Text("Tap to start").foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
+                            ZStack(){
+                                Circle().frame(width:120).foregroundColor(.white)
+                                Image(systemName: "mic.fill").foregroundColor(.black)  .font(.system(size: 45))
+                            }
                         }
                     }
                 }

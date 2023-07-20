@@ -9,8 +9,12 @@ import SwiftUI
 
 struct VocalRangesTestResultView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
-    @State var isShow = false
+    @StateObject var musicManager:MusicManager = MusicManager()
+    
     @State var items: [Any] = []
+    
+    @State var screenWidth = UIScreen.main.bounds.width
+    @State var screenHeight = UIScreen.main.bounds.height
     
     var body: some View {
         if(taskManager.isNext){
@@ -32,7 +36,21 @@ struct VocalRangesTestResultView: View {
                             Text("Back").font(.body).foregroundColor(.white).fontWeight(.bold)
                         }
                     Spacer()
-                }.padding(.top,10).padding(.leading,30)
+                    Button(
+                        action:{
+                            self.items.removeAll()
+                            
+                            guard let resultImage = ImageRenderer(content: cardResultShareView).uiImage else {
+                                return
+                            }
+                            self.items.append(resultImage)
+                            
+                            taskManager.isShareTrue()
+                        }
+                    ){
+                        Image(systemName:"square.and.arrow.up").font(.title3).foregroundColor(.white)
+                    }
+                }.padding(.top,10).padding(.horizontal,30)
                 ScrollView(){
                     cardResultView
                     VStack(){
@@ -45,32 +63,30 @@ struct VocalRangesTestResultView: View {
                                         Text("Explore More!").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
                                     }.frame(maxWidth:.infinity).background(.white).cornerRadius(30)
                                 
-//                                Button(
-//                                    action:{
-//                                        taskManager.isBackTrue()
-//                                    }){
-//                                        Text("Test again").foregroundColor(.white).font(.body).bold().padding(20)
-//                                    }.frame(maxWidth:.infinity)
+                                //                                Button(
+                                //                                    action:{
+                                //                                        taskManager.isBackTrue()
+                                //                                    }){
+                                //                                        Text("Test again").foregroundColor(.white).font(.body).bold().padding(20)
+                                //                                    }.frame(maxWidth:.infinity)
                             }.padding(30)
                         }else{
                             VStack(){
                                 Button(
                                     action:{
-                                        taskManager.isShareTrue()
                                         self.items.removeAll()
                                         
-                                        guard let resultImage = ImageRenderer(content: cardResultView).uiImage else {
+                                        guard let resultImage = ImageRenderer(content: cardResultShareView).uiImage else {
                                             return
                                         }
                                         self.items.append(resultImage)
-                                        self.isShow.toggle()
                                         
-                                        print("Berhasil!")
+                                        taskManager.isShareTrue()
                                     }){
                                         Text("Share to your story!").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
                                     }.frame(maxWidth:.infinity).background(.white).cornerRadius(30)
                                 
-                                    .sheet(isPresented: $isShow) {
+                                    .sheet(isPresented: $taskManager.isShare) {
                                         ShareSheetView(items: items).edgesIgnoringSafeArea(.all)
                                     }
                                 
@@ -78,26 +94,160 @@ struct VocalRangesTestResultView: View {
                             
                         }
                     }.padding(.bottom,100)
-                                        
+                    
                 }
-            }.frame(maxWidth: .infinity,maxHeight:.infinity).background(Color("Blue"))
+            }.frame(maxWidth: .infinity,maxHeight:.infinity).background(Color("Blue")).onAppear{
+                musicManager.getSongV2()
+            }
         }
         
     }
     
     var cardResultView: some View {
         ZStack(){
-                                Image("TestResultCard").resizable().scaledToFit().frame(maxWidth:.infinity).padding(0)
-                                VStack(spacing:10){
-                                    Text("Your Vocal Range").font(.title3).bold()
-                                    Text(taskManager.vocalRange).font(.title).bold()
-                                    Spacer()
-                                    Text("Your Vocal Type").font(.title3).bold()
-                                    Text(taskManager.vocalType).font(.title).bold()
-                                }.padding(30).padding(.vertical,CGFloat(UIScreen.main.bounds.width/3))
+            Image("CardShareFrame").resizable().scaledToFit().frame(maxWidth:.infinity).padding(0)
+            VStack(spacing:7){
+                Text("Your Vocal\n Range is:").font(.title3).bold().multilineTextAlignment(.center)
+                Text(taskManager.vocalRange).font(.largeTitle).fontWeight(.heavy)
+                Text("Your Vocal\n Type is:").font(.title3).bold().multilineTextAlignment(.center)
+                Text(taskManager.vocalType).font(.largeTitle).fontWeight(.heavy)
+                Text("Look, We’ve Found Similar Singers To You:").font(.title3).bold().multilineTextAlignment(.center)
+                
+                if(musicManager.arrSongsV2.count > 0){
+                    HStack(){
+                        ZStack(){
+                            Rectangle().foregroundColor(Color("Navy")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            HStack(){
+                                Spacer()
+                                Text(musicManager.arrSongsV2[0].singer).foregroundColor(.white).bold().padding(.trailing,0)
                             }
+                        }.frame(width:CGFloat(screenWidth/2),height:40).background(Color("Navy"))
+                        Spacer()
+                    }
+                }
+                if(musicManager.arrSongsV2.count > 1){
+                    HStack(){
+                        ZStack(){
+                            Rectangle().foregroundColor(Color("Blue")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            HStack(){
+                                Spacer()
+                                Text(musicManager.arrSongsV2[1].singer).foregroundColor(.white).bold().padding(.trailing,0)
+                            }
+                        }.frame(width:CGFloat(screenWidth/2.3),height:40).background(Color("Blue"))
+                        Spacer()
+                    }
+                }
+                if(musicManager.arrSongsV2.count > 2){
+                    HStack(){
+                        ZStack(){
+                            Rectangle().foregroundColor(Color("Green")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            HStack(){
+                                Spacer()
+                                Text(musicManager.arrSongsV2[2].singer).foregroundColor(.white).bold().padding(.trailing,0)
+                            }
+                        }.frame(width:CGFloat(screenWidth/2.6),height:40).background(Color("Green"))
+                        Spacer()
+                    }
+                }
+                
+                HStack(){
+                    if let profilePhotoData = taskManager.profilePhotoData, let profilePhoto = UIImage(data: taskManager.profilePhotoData!) {
+                        Image(uiImage: profilePhoto)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    } else {
+                        Circle().foregroundColor(Color("Orange"))
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                    }
+                    Text(taskManager.fullName).font(.body).foregroundColor(.black)
+                }
+                
+            }.padding(.horizontal,CGFloat(screenWidth/6.6)).padding(.top,10)
+        }
+    }
+    
+    @State var screenWidthShare:CGFloat = 2000
+    @State var screenHeightShare:CGFloat = 4330.18
+    @State var fontSizeTitle:CGFloat = 2000/15
+    @State var fontSizeBody:CGFloat = 2000/25
+    @State var fontSizeDesc:CGFloat = 2000/30
+    @State var fontSizeCallout:CGFloat = 2000/45
+    @State var padding:CGFloat = 2000/45
+    
+    var cardResultShareView: some View {
+        VStack(){
+            ZStack(){
+                Image("CardShareFrame").resizable().scaledToFit().frame(maxWidth:.infinity).padding(0)
+                VStack(spacing:padding){
+                    Text("Your Vocal\n Range is:").font(.system(size: fontSizeBody)).bold().multilineTextAlignment(.center)
+                    Text(taskManager.vocalRange).font(.system(size: fontSizeTitle)).fontWeight(.heavy).padding(.bottom,padding)
+                    Text("Your Vocal\n Type is:").font(.system(size: fontSizeBody)).bold().multilineTextAlignment(.center)
+                    Text(taskManager.vocalType).font(.system(size: fontSizeTitle)).fontWeight(.heavy).padding(.bottom,padding)
+                    Text("Look, We’ve Found Similar Singers To You:").font(.system(size: fontSizeBody)).bold().multilineTextAlignment(.center)
+                    
+                    if(musicManager.arrSongsV2.count > 0){
+                        HStack(){
+                            ZStack(){
+                                Rectangle().foregroundColor(Color("Navy")).frame(width:.infinity).cornerRadius(250).offset(x:+screenWidthShare/20)
+                                HStack(){
+                                    Spacer()
+                                    Text(musicManager.arrSongsV2[0].singer).foregroundColor(.white).bold().padding(.trailing,0).lineLimit(1).font(.system(size: fontSizeDesc))
+                                }
+                            }.frame(width:CGFloat(screenWidthShare/2),height:CGFloat(screenWidthShare/10)).background(Color("Navy"))
+                            Spacer()
+                        }
+                    }
+                    if(musicManager.arrSongsV2.count > 1){
+                        HStack(){
+                            ZStack(){
+                                Rectangle().foregroundColor(Color("Blue")).frame(width:.infinity).cornerRadius(250).offset(x:+screenWidthShare/20)
+                                HStack(){
+                                    Spacer()
+                                    Text(musicManager.arrSongsV2[1].singer).foregroundColor(.white).bold().padding(.trailing,0).lineLimit(1).font(.system(size: fontSizeDesc))
+                                }
+                            }.frame(width:CGFloat(screenWidthShare/2.3),height:CGFloat(screenWidthShare/10)).background(Color("Blue"))
+                            Spacer()
+                        }
+                    }
+                    if(musicManager.arrSongsV2.count > 2){
+                        HStack(){
+                            ZStack(){
+                                Rectangle().foregroundColor(Color("Green")).frame(width:.infinity).cornerRadius(250).offset(x:+screenWidthShare/20)
+                                HStack(){
+                                    Spacer()
+                                    Text(musicManager.arrSongsV2[2].singer).foregroundColor(.white).bold().padding(.trailing,0).lineLimit(1).font(.system(size: fontSizeDesc))
+                                }
+                            }.frame(width:CGFloat(screenWidthShare/2.6),height:CGFloat(screenWidthShare/10)).background(Color("Green"))
+                            Spacer()
+                        }
+                    }
+                    
+                    HStack(spacing:padding){
+                        if let profilePhotoData = taskManager.profilePhotoData, let profilePhoto = UIImage(data: taskManager.profilePhotoData!) {
+                            Image(uiImage: profilePhoto)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: screenWidthShare/10, height: screenWidthShare/10)
+                                .clipShape(Circle())
+                        } else {
+                            Circle().foregroundColor(Color("Orange"))
+                                .frame(width: screenWidthShare/10, height: screenWidthShare/10)
+                                .clipShape(Circle())
+                        }
+                        Text(taskManager.fullName).font(.system(size: fontSizeDesc)).foregroundColor(.black)
+                    }.padding(.top,padding)
+                    
+                }.padding(.horizontal,CGFloat(screenWidthShare/6.6)).padding(.vertical,10)
+            }
+        }.frame(width:screenWidthShare,height:screenHeightShare).background(Color("Blue")).onAppear{
+            musicManager.getSongV2()
+        }
     }
 }
+
 
 struct ShareSheetView: UIViewControllerRepresentable {
     let items: [Any]

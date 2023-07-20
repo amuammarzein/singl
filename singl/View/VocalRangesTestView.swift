@@ -39,7 +39,7 @@ struct VocalRangesTestView: View {
                             Spacer()
                         }.padding(.top,10).padding(.horizontal,30)
                         
-                        Text("And now, let’s find out your vocal range, follow the notes we play and you sing “aaa”").font(.title3).bold().foregroundColor(.white).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal,30).padding(.top,30)
+                        Text("Follow the notes we play and you Sing “AAAAA”").font(.title3).bold().foregroundColor(.white).multilineTextAlignment(.center).fixedSize(horizontal: false, vertical: true).padding(.horizontal,30).padding(.top,30)
                        
                         Spacer()
                         
@@ -170,7 +170,7 @@ struct VocalRangesTestView: View {
                         
                         
                         VStack(){
-                            Text(String(taskManager.timeRemaining)).foregroundColor(.white).font(.title).padding(.bottom,1).padding(.top,0)
+                            Text(String(taskManager.timeRemaining)).foregroundColor(.white).font(.title3).padding(.bottom,1).padding(.top,0)
                             Text(tunerManager.data.questionMessage).font(.callout).foregroundColor(Color("Yellow")).multilineTextAlignment(.center) .padding(.horizontal,30)
                             Spacer()
                         }.frame(height:150)

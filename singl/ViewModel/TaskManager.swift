@@ -24,6 +24,10 @@ class TaskManager:ObservableObject{
     @AppStorage("vocalMinFrequency") var vocalMinFrequency: Double = 0
     @AppStorage("vocalMaxFrequency") var vocalMaxFrequency: Double = 0
     
+    @State private var isImagePickerPresented = false
+    @State private var selectedImage: UIImage?
+    @AppStorage("profilePhoto") var profilePhotoData: Data?
+    
     
 //    @AppStorage("isMenu") var isMenu: Bool = true {
 //            didSet {

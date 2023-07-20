@@ -10,7 +10,20 @@ import SwiftUI
 struct DashboardView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var musicManager:MusicManager = MusicManager()
-    @EnvironmentObject var router: Router
+   
+    @State private var isImagePickerPresented = false
+        @State private var selectedImage: UIImage?
+    @AppStorage("profilePhoto") var profilePhotoData: Data?
+    
+//    @EnvironmentObject var router: Router
+    
+    func saveProfilePhoto() {
+            if let selectedImage = selectedImage,
+               let profilePhotoData = selectedImage.jpegData(compressionQuality: 0.8) {
+                self.profilePhotoData = profilePhotoData
+            }
+        }
+    
     var body: some View {
         VStack(){
             if(!taskManager.isDashboard){
@@ -32,46 +45,104 @@ struct DashboardView: View {
                         ScrollView(){
                             
                             VStack(){
-                                VStack(spacing:20){
+                                VStack(){
                                     
                                     HStack(){
-                                        Circle().foregroundColor(Color("Orange")).frame(width:40)
-                                        Text(taskManager.fullName).font(.body).foregroundColor(.white)
                                         Button(
                                             action:{
                                                 taskManager.isEditTrue()
                                             }
                                         ){
+                                        if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
+                                                        Image(uiImage: profilePhoto)
+                                                            .resizable()
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .frame(width: 40, height: 40)
+                                                            .clipShape(Circle())
+                                                    } else {
+                                                        Circle().foregroundColor(Color("Orange"))
+                                                            .frame(width: 40, height: 40)
+                                                            .clipShape(Circle())
+                                                    }
+                                        Text(taskManager.fullName).font(.body).foregroundColor(.white)
+                                        
                                             Image(systemName:"pencil").font(.body).foregroundColor(.white)
                                         }
                                         Spacer()
                                     }.padding(.top,10)
                                         .sheet(isPresented: $taskManager.isEdit) {
                                             VStack(alignment:.leading, spacing:20){
-                                                Text("Full Name").foregroundColor(.black).font(.body)
-                                                TextField("", text: $taskManager.fullName).font(.body).padding()
-                                                    .background(
-                                                        RoundedRectangle(cornerRadius: 10)
-                                                            .stroke(.black, lineWidth: 1.5)
-                                                    ).foregroundColor(.black).accentColor(.black)
-                                               
-                                                if(taskManager.isLoading){
-                                                    //                                                                                        LoadingView()
-                                                }else{
-                                                    Button(action: {
-                                                        //               updateData()
-                                                    }) {
-                                                        Text("Update Profile").font(.body).fontWeight(.none).foregroundColor(Color.black).padding(15).frame(maxWidth:.infinity).background(Color.white).cornerRadius(10)                                 }.alert(isPresented: $taskManager.isAlert) {
-                                                            Alert(
-                                                                title: Text("Notification"),
-                                                                message: Text(taskManager.msg),
-                                                                dismissButton: .default(Text("OK"))
-                                                            )
+                                                
+                                                HStack(){
+                                                    Button(
+                                                        action:{
+                                                            taskManager.isEditFalse()
+                                                        }){
+                                                            Text("Cancel").font(.body).foregroundColor(.red)
+                                                    }
+                                                    Spacer()
+                                                    Text("Edit Profile").font(.body).bold()
+                                                    Spacer()
+                                                    if(taskManager.isLoading){
+                                                        ProgressView()
+                                                            .progressViewStyle(CircularProgressViewStyle(tint: .black)).padding(0).font(.title).fontWeight(.none)
+                                                    }else{
+                                                        Button(
+                                                            action:{
+                                                                
+                                                                taskManager.isEditFalse()
+                                                            }){
+                                                            Text("Done").font(.body)
                                                         }
-                                                }
+                                                    }
+                                                    
+                                                }.padding(.horizontal,20)
+                                                
+                                                Rectangle().foregroundColor(.black.opacity(0.2)).frame(height:0.5)
+                                                
+                                                VStack(){
+                                                    VStack(alignment:.center){
+                                                   
+                                                        if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
+                                                                        Image(uiImage: profilePhoto)
+                                                                            .resizable()
+                                                                            .aspectRatio(contentMode: .fill)
+                                                                            .frame(width: 100, height: 100)
+                                                                            .clipShape(Circle())
+                                                                    } else {
+                                                                        Circle().foregroundColor(Color("Orange"))
+                                                                            .frame(width: 100, height: 100)
+                                                                            .clipShape(Circle())
+                                                                    }
+                                                        
+                                                        
+                                                        Button(
+                                                            action :{
+                                                                isImagePickerPresented = true
+                                                            }
+                                                        ){
+                                                            Text("Edit picture or avatar").font(.callout)
+                                                        }
+                                                    }.padding(.bottom,20).sheet(isPresented: $isImagePickerPresented, onDismiss: saveProfilePhoto) {
+                                                        ImagePicker(selectedImage: $selectedImage)
+                                                    }
+                                                  
+                                                    
+                                                    
+                                                    HStack(){
+                                                        Text("Full Name").foregroundColor(.black).font(.body)
+                                                        Spacer()
+                                                    }.padding(.bottom,3)
+                                                    TextField("", text: $taskManager.fullName).font(.body).padding()
+                                                        .background(
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                                .stroke(.black, lineWidth: 1.5)
+                                                        ).foregroundColor(.black).accentColor(.black)
+                                                    
+                                                }.padding(.horizontal,20)
                                                 Spacer()
                                                 
-                                            }.padding(20).frame(maxHeight:.infinity).background(.white).presentationDetents(
+                                            }.padding(.vertical,20).frame(maxHeight:.infinity).background(.white).presentationDetents(
                                                 [.large, .large]
                                             ).cornerRadius(10)
                                         }
@@ -226,15 +297,17 @@ struct DashboardView: View {
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()
                     
-                    print("***")
-                    print(router.path)
-                    print(router.path.count)
+//                    print("***")
+//                    print(router.path)
+//                    print(router.path.count)
                     //                    musicManager.getSong(limit:5)
                     //                    musicManager.getSinger(limit:5)
                 }
             }
         }.onAppear{
             taskManager.isDashboardTrue()
+//            taskManager.vocalType = "Bass"
+//            taskManager.vocalRange = "E2 - E4"
         }
     }
     
