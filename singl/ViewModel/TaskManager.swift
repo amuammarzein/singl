@@ -42,9 +42,34 @@ class TaskManager:ObservableObject{
     @Published var isSong:Bool = false
     @Published var isSinger:Bool = false
     @Published var isDone:Bool = false
+    @Published var isEdit:Bool = false
+    @Published var isLoading:Bool = false
+    @Published var isAlert:Bool = false
+    @Published var msg:String = ""
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
    
+    func isAlertTrue(){
+        isAlert = true
+    }
+    func isAlertFalse(){
+        isAlert = false
+    }
+    
+    func isLoadingTrue(){
+        isLoading = true
+    }
+    func isLoadingFalse(){
+        isLoading = false
+    }
+    
+    func isEditTrue(){
+        isEdit = true
+    }
+    func isEditFalse(){
+        isEdit = false
+    }
+    
     func isSkipTrue(){
         isSkip = true
     }

@@ -38,13 +38,42 @@ struct DashboardView: View {
                                         Text(taskManager.fullName).font(.body).foregroundColor(.white)
                                         Button(
                                             action:{
-                                                
+                                                taskManager.isEditTrue()
                                             }
                                         ){
                                             Image(systemName:"pencil").font(.body).foregroundColor(.white)
                                         }
                                         Spacer()
                                     }.padding(.top,10)
+                                        .sheet(isPresented: $taskManager.isEdit) {
+                                            VStack(alignment:.leading, spacing:20){
+                                                Text("Full Name").foregroundColor(.black).font(.body)
+                                                TextField("", text: $taskManager.fullName).font(.body).padding()
+                                                    .background(
+                                                        RoundedRectangle(cornerRadius: 10)
+                                                            .stroke(.black, lineWidth: 1.5)
+                                                    ).foregroundColor(.black).accentColor(.black)
+                                               
+                                                if(taskManager.isLoading){
+                                                    //                                                                                        LoadingView()
+                                                }else{
+                                                    Button(action: {
+                                                        //               updateData()
+                                                    }) {
+                                                        Text("Update Profile").font(.body).fontWeight(.none).foregroundColor(Color.black).padding(15).frame(maxWidth:.infinity).background(Color.white).cornerRadius(10)                                 }.alert(isPresented: $taskManager.isAlert) {
+                                                            Alert(
+                                                                title: Text("Notification"),
+                                                                message: Text(taskManager.msg),
+                                                                dismissButton: .default(Text("OK"))
+                                                            )
+                                                        }
+                                                }
+                                                Spacer()
+                                                
+                                            }.padding(20).frame(maxHeight:.infinity).background(.white).presentationDetents(
+                                                [.large, .large]
+                                            ).cornerRadius(10)
+                                        }
                                     
                                     HStack(){
                                         Text("Dashboard").font(.title2).foregroundColor(.white).bold()
@@ -111,11 +140,11 @@ struct DashboardView: View {
                                         
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
-                                                ForEach(musicManager.arrSongs, id: \.self) { item in
+                                                ForEach(musicManager.arrSongsV2, id: \.self) { item in
                                                     
                                                     VStack(){
                                                         
-                                                        AsyncImage(url: item.imageUrl) { image in
+                                                        AsyncImage(url: item.imgSong) { image in
                                                             image
                                                                 .resizable()
                                                                 .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
@@ -124,8 +153,8 @@ struct DashboardView: View {
                                                         }
                                                         
                                                         VStack(alignment:.leading){
-                                                            Text(item.name).lineLimit(1).font(.body).foregroundColor(.white)
-                                                            Text(item.artist).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
                                                         }
                                                     }.frame(width:100)
                                                 }
@@ -157,11 +186,11 @@ struct DashboardView: View {
                                         
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
-                                                ForEach(musicManager.arrSingers, id: \.self) { item in
+                                                ForEach(musicManager.arrSongsV2, id: \.self) { item in
                                                     
                                                     VStack(){
                                                         
-                                                        AsyncImage(url: item.imageUrl) { image in
+                                                        AsyncImage(url: item.imgSinger) { image in
                                                             image
                                                                 .resizable()
                                                                 .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
@@ -170,7 +199,7 @@ struct DashboardView: View {
                                                         }
                                                         
                                                         VStack(alignment:.leading){
-                                                            Text(item.name).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
                                                         }
                                                     }.frame(width:100)
                                                 }
@@ -186,15 +215,17 @@ struct DashboardView: View {
                             
                             
                         }.padding(.top,0).refreshable(){
-                            musicManager.getSong(limit:5)
-                            musicManager.getSinger(limit:5)
+                            musicManager.getSongV2()
+                            //                            musicManager.getSong(limit:5)
+                            //                            musicManager.getSinger(limit:5)
                         }
                     }.background(Color("Blue")).frame(maxWidth:.infinity, maxHeight:.infinity)
                 }.onAppear{
                     taskManager.isTestFalse()
                     taskManager.isSkipTrue()
-                    musicManager.getSong(limit:5)
-                    musicManager.getSinger(limit:5)
+                    musicManager.getSongV2()
+                    //                    musicManager.getSong(limit:5)
+                    //                    musicManager.getSinger(limit:5)
                 }
             }
         }.onAppear{

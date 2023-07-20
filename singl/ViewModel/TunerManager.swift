@@ -260,21 +260,20 @@ class TunerManager: ObservableObject, HasAudioEngine {
             print(data.questionMaxFrequency)
             data.questionMessage = "Test done! your max note range is "+data.questionNoteTmp+". In a moment you will be redirected to the test result"
             
-           
             if(data.questionMaxFrequency > 1046.50){
-                data.vocalType = "> Soprano"
+                data.vocalType = "> Sopran"
             }else if(data.questionMaxFrequency <= 329.63){
                 // E2 – E4
                 data.vocalType = "Bass"
             }else if(data.questionMaxFrequency <= 440.00){
                 // A2 – A4
-                data.vocalType = "Bariton"
+                data.vocalType = "Baritone"
             }else if(data.questionMaxFrequency <= 523.25){
                 // C3 – C5
                 data.vocalType = "Tenor"
             }else if(data.questionMaxFrequency <= 659.26){
                 // E3 - E5
-                data.vocalType = "Counter Tenor"
+                data.vocalType = "Countertenor"
             }else if(data.questionMaxFrequency <= 698.46){
                 // F3 - F5
                 data.vocalType = "Alto"
@@ -283,7 +282,7 @@ class TunerManager: ObservableObject, HasAudioEngine {
                 data.vocalType = "Mezzo-Soprano"
             }else if(data.questionMaxFrequency <= 1046.50){
                 //C4 – C6
-                data.vocalType = "Soprano"
+                data.vocalType = "Sopran"
             }else{
                 data.vocalType = "-"
             }
@@ -407,21 +406,21 @@ class TunerManager: ObservableObject, HasAudioEngine {
             data.vocalRange = "\(data.minNote)\(data.minOctave) - \(data.maxNote)\(data.maxOctave)"
             
             if(data.maxFrequency > 1046.50){
-               data.vocalType = "> Soprano"
+               data.vocalType = "> Sopran"
            }else if(data.maxFrequency <= 329.63){
                data.vocalType = "Bass"
            }else if(data.maxFrequency <= 440.00){
-               data.vocalType = "Bariton"
+               data.vocalType = "Baritone"
            }else if(data.maxFrequency <= 523.25){
                data.vocalType = "Tenor"
            }else if(data.maxFrequency <= 659.26){
-               data.vocalType = "Counter Tenor"
+               data.vocalType = "Countertenor"
            }else if(data.maxFrequency <= 698.46){
                data.vocalType = "Alto"
            }else if(data.maxFrequency <= 880.00){
                data.vocalType = "Mezzo-Soprano"
            }else if(data.maxFrequency <= 1046.50){
-               data.vocalType = "Soprano"
+               data.vocalType = "Sopran"
            }else{
                data.vocalType = "-"
            }
