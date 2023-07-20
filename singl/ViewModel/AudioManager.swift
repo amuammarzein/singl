@@ -13,6 +13,7 @@ class AudioManager:ObservableObject{
     var audioPlayer: AVAudioPlayer?
     
     func playAudio(){
+//        audioPlayer?.stop()
         let fileName = "Sounds/UseHeadphones.mp3"
         guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {
             print("Sound file \(fileName) not found.")

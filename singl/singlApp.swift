@@ -11,7 +11,9 @@ import SwiftUI
 struct singlApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashView()
+//            HomeView()
+//                VocalRangesTestView()
         }
     }
 }

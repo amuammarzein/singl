@@ -9,44 +9,86 @@ import SwiftUI
 
 import AVFoundation
 
-struct UseHeadphonesViews: View {
+struct GetStartedView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var audioManager:AudioManager = AudioManager()
     var body: some View {
         if(taskManager.isNext){
-            VocalTypeTestView()
+            UseHeadphonesViews()
+        }else if(taskManager.isDashboard){
+            HomeView()
         }else{
-            VStack(spacing:40){
-                Image(systemName: "headphones").foregroundColor(.white)  .font(.system(size: 100)).bold()
-                Text("Make sure to sing with headphones on for better result").foregroundColor(.white).font(.title3).bold()
-                    .multilineTextAlignment(.center)
-                if(taskManager.isActive){
-                    Button(
-                        action:{
-                            taskManager.isNextTrue()
-                        }){
-                            Text("Test your vocal range").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
-                        }.frame(maxWidth:.infinity).background(.white).cornerRadius(30)
-                }
-                
-            }.padding(30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue")).onAppear {
-//                audioManager.playAudio()
-            }.onDisappear{
-                audioManager.stopAudio()
-            }.onReceive(taskManager.timer) { time in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                    withAnimation {
-                        taskManager.isActiveTrue()
+            ZStack(){
+                VStack(){
+                    HStack(){
+                        Spacer()
+                        Image("GetStartedTop").resizable().scaledToFit().frame(width:200)
+                    }
+                    Spacer()
+                    HStack(){
+                        Image("GetStartedBottom").resizable().scaledToFit().frame(width:150)
+                        Spacer()
                     }
                 }
+                VStack(alignment:.center){
+                    
+                    Spacer()
+                    HStack(){
+                        Image("LogoText").resizable().scaledToFit().frame(width:70)
+                        Spacer()
+                    }.padding(.leading,30)
+                    Spacer()
+                    VStack(){
+                        HStack(){
+                            Text("Know your\nvoice,\nLet’s start\nsing with us.").font(.largeTitle).bold()
+                            Spacer()
+                        }
+                    }.padding(30)
+                    Spacer()
+                    HStack(){
+                        Spacer()
+                        Button(
+                            action:{
+                                taskManager.isNextTrue()
+                            }
+                        ){
+                            HStack(){
+                                Text("Get Started")
+                                    .font(.body).bold()
+                                    .foregroundColor(.white)
+                                Image(systemName:"arrow.right").foregroundColor(.white)
+                                HStack(){}.frame(width:45)
+                            }.padding(20)
+                        }.background(Color("Blue"))
+                            .cornerRadius(30).offset(x:+45).padding(.bottom,90)
+                    }
+                    HStack(){
+                        Spacer()
+                        Button(
+                            action:{
+                                taskManager.isDashboardTrue()
+                            }
+                        ){
+                            HStack(){
+                                Text("Go to dashboard")
+                                    .font(.callout).underline()
+                                    .foregroundColor(Color("Blue"))
+                                HStack(){}.frame(width:45)
+                            }.padding(20)
+                        }
+                            .cornerRadius(30).offset(x:+45).padding(.bottom,30)
+                    }
+                    
+                }
             }
+            .background(.white).frame(maxWidth:.infinity, maxHeight:.infinity).ignoresSafeArea()
         }
         
     }
 }
 
-struct UseHeadphonesViews_Previews: PreviewProvider {
+struct GetStartedView_Previews: PreviewProvider {
     static var previews: some View {
-        UseHeadphonesViews()
+        GetStartedView()
     }
 }

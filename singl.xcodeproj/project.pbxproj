@@ -11,6 +11,31 @@
 		BE647D532A652C340013185A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE647D522A652C340013185A /* ContentView.swift */; };
 		BE647D552A652C350013185A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE647D542A652C350013185A /* Assets.xcassets */; };
 		BE647D582A652C350013185A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE647D572A652C350013185A /* Preview Assets.xcassets */; };
+		BE647D602A652C830013185A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D5F2A652C830013185A /* AudioKit */; };
+		BE647D632A652C9F0013185A /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D622A652C9F0013185A /* SoundpipeAudioKit */; };
+		BE647D662A652CB30013185A /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D652A652CB30013185A /* AudioKitUI */; };
+		BE647D692A652CBE0013185A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D682A652CBE0013185A /* AudioKitEX */; };
+		BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88B2A66739F00725CCD /* TunerManager.swift */; };
+		BEC5D88E2A6673B500725CCD /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88D2A6673B500725CCD /* SplashView.swift */; };
+		BEC5D8902A6673D400725CCD /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = BEC5D88F2A6673D400725CCD /* Sounds */; };
+		BEC5D8922A6674A000725CCD /* UseHeadphonesViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */; };
+		BEC5D8942A6674A600725CCD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8932A6674A600725CCD /* HomeView.swift */; };
+		BEC5D8962A66754F00725CCD /* TunerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8952A66754F00725CCD /* TunerModel.swift */; };
+		BEC5D8982A6675AC00725CCD /* EndpointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8972A6675AC00725CCD /* EndpointModel.swift */; };
+		BEC5D89A2A6676CC00725CCD /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8992A6676CB00725CCD /* TaskManager.swift */; };
+		BEC5D89C2A667A3100725CCD /* VocalTypeTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */; };
+		BEC5D89E2A667A7D00725CCD /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D89D2A667A7D00725CCD /* AudioManager.swift */; };
+		BEC5D8A02A667D5B00725CCD /* VocalRangesTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */; };
+		BEC5D8A22A667D6100725CCD /* VocalRangesTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */; };
+		BEC5D8A42A668A1A00725CCD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A32A668A1A00725CCD /* DashboardView.swift */; };
+		BEC5D8A62A668A2300725CCD /* SongRecomendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A52A668A2300725CCD /* SongRecomendationView.swift */; };
+		BEC5D8A82A668A2B00725CCD /* SongConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */; };
+		BEC5D8AA2A668B3100725CCD /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A92A668B3100725CCD /* TaskModel.swift */; };
+		BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */; };
+		BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */; };
+		BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CB2A66D86A0034C48A /* MusicManager.swift */; };
+		BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CD2A66DAB90034C48A /* MusicModel.swift */; };
+		BEFA55D02A66E70D0034C48A /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +44,28 @@
 		BE647D522A652C340013185A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE647D542A652C350013185A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE647D572A652C350013185A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BEC5D88B2A66739F00725CCD /* TunerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerManager.swift; sourceTree = "<group>"; };
+		BEC5D88D2A6673B500725CCD /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		BEC5D88F2A6673D400725CCD /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseHeadphonesViews.swift; sourceTree = "<group>"; };
+		BEC5D8932A6674A600725CCD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BEC5D8952A66754F00725CCD /* TunerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerModel.swift; sourceTree = "<group>"; };
+		BEC5D8972A6675AC00725CCD /* EndpointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointModel.swift; sourceTree = "<group>"; };
+		BEC5D8992A6676CB00725CCD /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalTypeTestView.swift; sourceTree = "<group>"; };
+		BEC5D89D2A667A7D00725CCD /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRangesTestView.swift; sourceTree = "<group>"; };
+		BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRangesTestResultView.swift; sourceTree = "<group>"; };
+		BEC5D8A32A668A1A00725CCD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		BEC5D8A52A668A2300725CCD /* SongRecomendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRecomendationView.swift; sourceTree = "<group>"; };
+		BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongConverterView.swift; sourceTree = "<group>"; };
+		BEC5D8A92A668B3100725CCD /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		BEC5D8AB2A6693FA00725CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmpVisualizerView.swift; sourceTree = "<group>"; };
+		BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		BEFA55CB2A66D86A0034C48A /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
+		BEFA55CD2A66DAB90034C48A /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
+		BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE647D632A652C9F0013185A /* SoundpipeAudioKit in Frameworks */,
+				BE647D692A652CBE0013185A /* AudioKitEX in Frameworks */,
+				BE647D662A652CB30013185A /* AudioKitUI in Frameworks */,
+				BE647D602A652C830013185A /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,6 +86,7 @@
 		BE647D442A652C340013185A = {
 			isa = PBXGroup;
 			children = (
+				BEC5D88F2A6673D400725CCD /* Sounds */,
 				BE647D4F2A652C340013185A /* singl */,
 				BE647D4E2A652C340013185A /* Products */,
 			);
@@ -51,9 +103,12 @@
 		BE647D4F2A652C340013185A /* singl */ = {
 			isa = PBXGroup;
 			children = (
+				BEC5D8AB2A6693FA00725CCD /* Info.plist */,
 				BE647D502A652C340013185A /* singlApp.swift */,
 				BE647D522A652C340013185A /* ContentView.swift */,
-				BE647D542A652C350013185A /* Assets.xcassets */,
+				BEC5D8882A66725000725CCD /* Model */,
+				BEC5D8892A66726500725CCD /* ViewModel */,
+				BEC5D88A2A66727300725CCD /* View */,
 				BE647D562A652C350013185A /* Preview Content */,
 			);
 			path = singl;
@@ -62,9 +117,51 @@
 		BE647D562A652C350013185A /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				BE647D542A652C350013185A /* Assets.xcassets */,
 				BE647D572A652C350013185A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BEC5D8882A66725000725CCD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BEC5D8952A66754F00725CCD /* TunerModel.swift */,
+				BEC5D8972A6675AC00725CCD /* EndpointModel.swift */,
+				BEFA55CD2A66DAB90034C48A /* MusicModel.swift */,
+				BEC5D8A92A668B3100725CCD /* TaskModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BEC5D8892A66726500725CCD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BEC5D88B2A66739F00725CCD /* TunerManager.swift */,
+				BEFA55CB2A66D86A0034C48A /* MusicManager.swift */,
+				BEC5D89D2A667A7D00725CCD /* AudioManager.swift */,
+				BEC5D8992A6676CB00725CCD /* TaskManager.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BEC5D88A2A66727300725CCD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEC5D88D2A6673B500725CCD /* SplashView.swift */,
+				BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */,
+				BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */,
+				BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */,
+				BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */,
+				BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */,
+				BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */,
+				BEC5D8932A6674A600725CCD /* HomeView.swift */,
+				BEC5D8A52A668A2300725CCD /* SongRecomendationView.swift */,
+				BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */,
+				BEC5D8A32A668A1A00725CCD /* DashboardView.swift */,
+				BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +180,12 @@
 			dependencies = (
 			);
 			name = singl;
+			packageProductDependencies = (
+				BE647D5F2A652C830013185A /* AudioKit */,
+				BE647D622A652C9F0013185A /* SoundpipeAudioKit */,
+				BE647D652A652CB30013185A /* AudioKitUI */,
+				BE647D682A652CBE0013185A /* AudioKitEX */,
+			);
 			productName = singl;
 			productReference = BE647D4D2A652C340013185A /* singl.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +214,12 @@
 				Base,
 			);
 			mainGroup = BE647D442A652C340013185A;
+			packageReferences = (
+				BE647D5E2A652C830013185A /* XCRemoteSwiftPackageReference "AudioKit" */,
+				BE647D612A652C9F0013185A /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+				BE647D642A652CB30013185A /* XCRemoteSwiftPackageReference "AudioKitUI" */,
+				BE647D672A652CBE0013185A /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+			);
 			productRefGroup = BE647D4E2A652C340013185A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -125,6 +234,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC5D8902A6673D400725CCD /* Sounds in Resources */,
 				BE647D582A652C350013185A /* Preview Assets.xcassets in Resources */,
 				BE647D552A652C350013185A /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +247,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC5D8A62A668A2300725CCD /* SongRecomendationView.swift in Sources */,
+				BEC5D8982A6675AC00725CCD /* EndpointModel.swift in Sources */,
+				BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */,
 				BE647D532A652C340013185A /* ContentView.swift in Sources */,
+				BEC5D8A42A668A1A00725CCD /* DashboardView.swift in Sources */,
+				BEC5D8962A66754F00725CCD /* TunerModel.swift in Sources */,
+				BEC5D8A02A667D5B00725CCD /* VocalRangesTestView.swift in Sources */,
+				BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */,
+				BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */,
+				BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */,
+				BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */,
+				BEC5D8AA2A668B3100725CCD /* TaskModel.swift in Sources */,
+				BEC5D8922A6674A000725CCD /* UseHeadphonesViews.swift in Sources */,
+				BEC5D8942A6674A600725CCD /* HomeView.swift in Sources */,
+				BEC5D89C2A667A3100725CCD /* VocalTypeTestView.swift in Sources */,
 				BE647D512A652C340013185A /* singlApp.swift in Sources */,
+				BEFA55D02A66E70D0034C48A /* ShimmerView.swift in Sources */,
+				BEC5D89A2A6676CC00725CCD /* TaskManager.swift in Sources */,
+				BEC5D8A82A668A2B00725CCD /* SongConverterView.swift in Sources */,
+				BEC5D89E2A667A7D00725CCD /* AudioManager.swift in Sources */,
+				BEC5D8A22A667D6100725CCD /* VocalRangesTestResultView.swift in Sources */,
+				BEC5D88E2A6673B500725CCD /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +400,10 @@
 				DEVELOPMENT_TEAM = 4C2ZJ8RVF3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = singl/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SingL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +433,10 @@
 				DEVELOPMENT_TEAM = 4C2ZJ8RVF3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = singl/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SingL;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +477,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BE647D5E2A652C830013185A /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.1;
+			};
+		};
+		BE647D612A652C9F0013185A /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.1;
+			};
+		};
+		BE647D642A652CB30013185A /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitUI.git";
+			requirement = {
+				kind = exactVersion;
+				version = 0.3.5;
+			};
+		};
+		BE647D672A652CBE0013185A /* XCRemoteSwiftPackageReference "AudioKitEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitEX.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BE647D5F2A652C830013185A /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE647D5E2A652C830013185A /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		BE647D622A652C9F0013185A /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE647D612A652C9F0013185A /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+		BE647D652A652CB30013185A /* AudioKitUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE647D642A652CB30013185A /* XCRemoteSwiftPackageReference "AudioKitUI" */;
+			productName = AudioKitUI;
+		};
+		BE647D682A652CBE0013185A /* AudioKitEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BE647D672A652CBE0013185A /* XCRemoteSwiftPackageReference "AudioKitEX" */;
+			productName = AudioKitEX;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BE647D452A652C340013185A /* Project object */;
 }
