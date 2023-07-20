@@ -44,7 +44,9 @@ struct HomeView: View {
             }
         }.onAppear{
             taskManager.isDashboardTrue()
-            print(router)
+            print("***")
+            print(router.path)
+            print(router.path.count)
         }
     }
 }

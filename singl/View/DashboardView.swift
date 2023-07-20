@@ -225,7 +225,10 @@ struct DashboardView: View {
                     taskManager.isTestFalse()
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()
-                    print(router)
+                    
+                    print("***")
+                    print(router.path)
+                    print(router.path.count)
                     //                    musicManager.getSong(limit:5)
                     //                    musicManager.getSinger(limit:5)
                 }
