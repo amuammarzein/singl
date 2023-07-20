@@ -108,18 +108,22 @@ extension TabBarView {
 extension TabBarView {
     private func tabView2(tab: TabBarItem) -> some View {
         VStack {
-            Image( tab.image).resizable().scaledToFit().frame(height:30)
+            Image(localSelection == tab ? tab.imageSel : tab.image)
+                .resizable()
+                .scaledToFit()
+                .frame(height:30)
+                
             Text(tab.title)
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
         }
-        .foregroundColor(localSelection == tab ? tab.color : Color.gray)
+        .foregroundColor(localSelection == tab ? Color.white : tab.color)
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
         .background(
             ZStack {
                 if localSelection == tab {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(tab.color.opacity(0.2))
+                        .fill(tab.color)
                         .matchedGeometryEffect(id: "background_rectangle", in: namespace)
                 }
             }
@@ -145,7 +149,7 @@ extension TabBarView {
 
 struct TabBarView_Previews: PreviewProvider {
     
-    static let tabs: [TabBarItem] = [.menu1, .menu2, .menu4]
+    static let tabs: [TabBarItem] = [.menu1, .menu2, .menu3, .menu4]
     
     static var previews: some View {
         VStack {
@@ -183,6 +187,14 @@ enum TabBarItem: Identifiable, Hashable, CaseIterable {
     
     var id: Self {
         return self
+    }
+    var imageSel: String {
+        switch self{
+        case .menu1: return "dashboard"
+        case .menu2: return "vocal"
+        case .menu3: return "music"
+        case .menu4: return "convert"
+        }
     }
     
     var image: String {
