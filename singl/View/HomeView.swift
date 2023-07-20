@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @State private var selectedTab: TabBarItem = .menu1
+    @EnvironmentObject var router: Router
     var body: some View {
         TabBarContainer(selection: $selectedTab) {
             ForEach(TabBarItem.allCases) { item in
@@ -43,6 +44,7 @@ struct HomeView: View {
             }
         }.onAppear{
             taskManager.isDashboardTrue()
+            print(router)
         }
     }
 }

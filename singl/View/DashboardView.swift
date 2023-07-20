@@ -10,6 +10,7 @@ import SwiftUI
 struct DashboardView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var musicManager:MusicManager = MusicManager()
+    @EnvironmentObject var router: Router
     var body: some View {
         VStack(){
             if(!taskManager.isDashboard){
@@ -224,6 +225,7 @@ struct DashboardView: View {
                     taskManager.isTestFalse()
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()
+                    print(router)
                     //                    musicManager.getSong(limit:5)
                     //                    musicManager.getSinger(limit:5)
                 }
