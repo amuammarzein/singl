@@ -59,7 +59,7 @@ struct DashboardView: View {
                                             ZStack(){
                                                 VStack(spacing:5){
                                                     HStack(){
-                                                        Text("Your Vocal Range:").font(.body).foregroundColor(.black)
+                                                        Text("Your Vocal Range:").font(.body).foregroundColor(Color("Navy"))
                                                         Spacer()
                                                     }
                                                     HStack(){
@@ -67,7 +67,7 @@ struct DashboardView: View {
                                                         Spacer()
                                                     }.padding(.bottom,20)
                                                     HStack(){
-                                                        Text("Your Vocal Type:").font(.body).foregroundColor(.black)
+                                                        Text("Your Vocal Type:").font(.body).foregroundColor(Color("Navy"))
                                                         Spacer()
                                                     }
                                                     HStack(){
