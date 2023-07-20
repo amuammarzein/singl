@@ -1,0 +1,14 @@
+<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M90 90.1069H120V60.1069L90 90.1069ZM120 60.1068V60H119.893L120 60.1068Z" fill="#F28A0F"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60 60C76.5082 60 89.9022 73.3336 90 89.8187L60 89.8187L60 60Z" fill="#FFE7BD"/>
+<path d="M30 30C30 13.4315 43.4315 0 60 0C60 10 54 30 30 30Z" fill="#E5340B"/>
+<path d="M90 30C90 13.4315 76.5685 0 60 0V30H90Z" fill="#F28A0F"/>
+<path d="M30 30C30 46.5685 43.4315 60 60 60V59.5793V30H30Z" fill="#3F8A8C"/>
+<path d="M60 60C43.4315 60 30 46.5685 30 30V60H60Z" fill="#3F8A8C"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M90 30C90 46.5685 76.5685 60 60 60V59.5793C60.083 49.4504 66.1348 30 90 30Z" fill="#E5340B"/>
+<path d="M120 60C103.431 60 90 46.5685 90 30C100 30.2 120 36.48 120 60Z" fill="#0B0835"/>
+<path d="M120 0C103.431 0 90 13.4315 90 30H120V0Z" fill="#0B0835"/>
+<path d="M30 120C46.5685 120 60 106.569 60 90H30V120Z" fill="#0C5679"/>
+<path d="M30 60C46.5685 60 60 73.4315 60 90C36.24 90 30.1 70 30 60Z" fill="#F28A0F"/>
+<path d="M0 90C0 106.569 13.4315 120 30 120V90V60C13.4315 60 0 73.4315 0 90Z" fill="#E5340B"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg width="189" height="214" viewBox="0 0 189 214" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60 123.819C59.9021 107.334 46.5082 94 30 94C13.4918 94 0.0978546 107.334 0 123.819L60 123.819Z" fill="#0B0835"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M120 60C114.23 60.0342 109.563 64.7221 109.563 70.5C109.563 76.2779 114.23 80.9658 120 81V60Z" fill="#FFE7BD"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M15 78.9994C15 54.2375 35 34.1468 59.7275 34V79H15C15 78.9998 15 78.9996 15 78.9994Z" fill="#FFE7BD"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M150 30C171.461 30 188.873 47.3336 189 68.7643L150 68.7643L150 30Z" fill="#E5340B"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M120 59.7868V0H60.2132L120 59.7868ZM60.2132 0H60V0.213196L60.2132 0Z" fill="#0C5679"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M150 106V124H168L150 106ZM168 124H168.064V123.936L168 124Z" fill="#F28A0F"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M60 33.9997L60 78.8398H104.84L60 33.9997ZM104.84 78.8398H105V78.6802L104.84 78.8398Z" fill="#3F8A8C"/>
+<rect x="150" y="67" width="39" height="39" fill="#3F8A8C"/>
+<path d="M105 98C91.1929 98 80 109.193 80 123H105V98Z" fill="#0C5679"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M130 123C130 136.807 118.807 148 105 148V123H130Z" fill="#F28A0F"/>
+<path d="M105 148C91.1929 148 80 136.807 80 123C99.6 123 104.833 139.667 105 148Z" fill="#FFE7BD"/>
+<path d="M130 123C130 109.193 118.807 98 105 98V123H130Z" fill="#0B0835"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M105 169C129.853 169 150 148.853 150 124C174.853 124 195 144.147 195 169C195 193.853 174.853 214 150 214C125.147 214 105 193.853 105 169Z" fill="#E5340B"/>
+<rect x="150" y="214" width="30" height="60" transform="rotate(-90 150 214)" fill="#E5340B"/>
+<path d="M60 124C35.1472 124 15 144.147 15 169H60V124Z" fill="#F28A0F"/>
+<path d="M60 124V169H105C80.1472 169 60 148.853 60 124Z" fill="#3F8A8C"/>
+<path d="M105 79H60V124C60 99.1472 80.1472 79 105 79Z" fill="#E5340B"/>
+<path d="M189 45V0L144 0C168.853 0 189 20.1472 189 45Z" fill="#0B0835"/>
+</svg>
