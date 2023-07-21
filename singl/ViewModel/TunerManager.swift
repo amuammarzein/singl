@@ -74,7 +74,7 @@ class TunerManager: ObservableObject, HasAudioEngine {
         data.noteName = taskManager.vocalMaxNote
         data.noteOctave = taskManager.vocalMaxOctave
         
-        data.questionMessage = "Sing the note for "+data.questionNote+" in 2 seconds"
+        data.questionMessage = "Sing the note for "+data.questionNote+" in 1 second"
         
     }
     
@@ -316,7 +316,7 @@ class TunerManager: ObservableObject, HasAudioEngine {
                 data.questionStatus = .play
                 data.questionColor = .white
                 data.isCorrect = false
-                data.questionMessage = "Sing the note for "+data.questionNote+" in 2 seconds"
+                data.questionMessage = "Sing the note for "+data.questionNote+" in 1 second"
                 clock = 0
                 data.renewTime = true
                 
@@ -404,7 +404,9 @@ class TunerManager: ObservableObject, HasAudioEngine {
                 data.minOctave = octave
             }
             data.vocalRange = "\(data.minNote)\(data.minOctave) - \(data.maxNote)\(data.maxOctave)"
-            
+            print("***")
+            print(data.maxNote)
+            print(data.maxFrequency)
             if(data.maxFrequency > 1046.50){
                data.vocalType = "> Sopran"
            }else if(data.maxFrequency <= 329.63){

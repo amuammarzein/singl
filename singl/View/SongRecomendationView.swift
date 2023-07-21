@@ -17,7 +17,17 @@ struct SongRecomendationView: View {
     var body: some View {
         VStack(){
             HStack(){
-                Circle().foregroundColor(Color("Orange")).frame(width:40)
+                if let profilePhotoData = taskManager.profilePhotoData, let profilePhoto = UIImage(data: taskManager.profilePhotoData!) {
+                    Image(uiImage: profilePhoto)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                } else {
+                    Circle().foregroundColor(Color("Orange"))
+                        .frame(width: 40, height: 40)
+                        .clipShape(Circle())
+                }
                 Text(taskManager.fullName).font(.body).foregroundColor(.white)
                 Spacer()
                 Button(

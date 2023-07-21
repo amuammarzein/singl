@@ -35,6 +35,9 @@
 		BEC5D8AA2A668B3100725CCD /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A92A668B3100725CCD /* TaskModel.swift */; };
 		BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */; };
 		BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */; };
+		BED2D7432A6A7B2500C033DB /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = BED2D7422A6A7B2500C033DB /* Keyboard */; };
+		BED2D7452A6A7B9400C033DB /* TunerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2D7442A6A7B9400C033DB /* TunerView.swift */; };
+		BED2D7472A6A7D8800C033DB /* PianoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2D7462A6A7D8800C033DB /* PianoManager.swift */; };
 		BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CB2A66D86A0034C48A /* MusicManager.swift */; };
 		BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CD2A66DAB90034C48A /* MusicModel.swift */; };
 		BEFA55D02A66E70D0034C48A /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */; };
@@ -67,6 +70,9 @@
 		BEC5D8AB2A6693FA00725CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmpVisualizerView.swift; sourceTree = "<group>"; };
 		BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
+		BED2D73E2A6A7A6F00C033DB /* singl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = singl.entitlements; sourceTree = "<group>"; };
+		BED2D7442A6A7B9400C033DB /* TunerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerView.swift; sourceTree = "<group>"; };
+		BED2D7462A6A7D8800C033DB /* PianoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoManager.swift; sourceTree = "<group>"; };
 		BEFA55CB2A66D86A0034C48A /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		BEFA55CD2A66DAB90034C48A /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
@@ -79,6 +85,7 @@
 			files = (
 				BE647D632A652C9F0013185A /* SoundpipeAudioKit in Frameworks */,
 				BE647D692A652CBE0013185A /* AudioKitEX in Frameworks */,
+				BED2D7432A6A7B2500C033DB /* Keyboard in Frameworks */,
 				BE647D662A652CB30013185A /* AudioKitUI in Frameworks */,
 				BE647D602A652C830013185A /* AudioKit in Frameworks */,
 			);
@@ -107,6 +114,7 @@
 		BE647D4F2A652C340013185A /* singl */ = {
 			isa = PBXGroup;
 			children = (
+				BED2D73E2A6A7A6F00C033DB /* singl.entitlements */,
 				BEC5D8AB2A6693FA00725CCD /* Info.plist */,
 				BE647D502A652C340013185A /* singlApp.swift */,
 				BE647D522A652C340013185A /* ContentView.swift */,
@@ -145,6 +153,7 @@
 				BEFA55CB2A66D86A0034C48A /* MusicManager.swift */,
 				BEC5D89D2A667A7D00725CCD /* AudioManager.swift */,
 				BEC5D8992A6676CB00725CCD /* TaskManager.swift */,
+				BED2D7462A6A7D8800C033DB /* PianoManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -156,6 +165,7 @@
 				BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */,
 				BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */,
 				BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */,
+				BED2D7442A6A7B9400C033DB /* TunerView.swift */,
 				BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */,
 				BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */,
 				BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */,
@@ -191,6 +201,7 @@
 				BE647D622A652C9F0013185A /* SoundpipeAudioKit */,
 				BE647D652A652CB30013185A /* AudioKitUI */,
 				BE647D682A652CBE0013185A /* AudioKitEX */,
+				BED2D7422A6A7B2500C033DB /* Keyboard */,
 			);
 			productName = singl;
 			productReference = BE647D4D2A652C340013185A /* singl.app */;
@@ -225,6 +236,7 @@
 				BE647D612A652C9F0013185A /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
 				BE647D642A652CB30013185A /* XCRemoteSwiftPackageReference "AudioKitUI" */,
 				BE647D672A652CBE0013185A /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+				BED2D7412A6A7B2500C033DB /* XCRemoteSwiftPackageReference "Keyboard" */,
 			);
 			productRefGroup = BE647D4E2A652C340013185A /* Products */;
 			projectDirPath = "";
@@ -254,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE1925832A697A13000701DD /* SongRecomendationView.swift in Sources */,
+				BED2D7472A6A7D8800C033DB /* PianoManager.swift in Sources */,
 				BEC5D8982A6675AC00725CCD /* EndpointModel.swift in Sources */,
 				BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */,
 				BE647D532A652C340013185A /* ContentView.swift in Sources */,
@@ -275,6 +288,7 @@
 				BEC5D8A82A668A2B00725CCD /* SongConverterView.swift in Sources */,
 				BEC5D89E2A667A7D00725CCD /* AudioManager.swift in Sources */,
 				BE1925812A697906000701DD /* ImagePicker.swift in Sources */,
+				BED2D7452A6A7B9400C033DB /* TunerView.swift in Sources */,
 				BEC5D8A22A667D6100725CCD /* VocalRangesTestResultView.swift in Sources */,
 				BEC5D88E2A6673B500725CCD /* SplashView.swift in Sources */,
 			);
@@ -402,6 +416,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = singl/singl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"singl/Preview Content\"";
@@ -411,12 +426,14 @@
 				INFOPLIST_FILE = singl/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SingL;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Your usage description here";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -424,6 +441,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amuammarzein.singl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -435,6 +455,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = singl/singl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"singl/Preview Content\"";
@@ -444,12 +465,14 @@
 				INFOPLIST_FILE = singl/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SingL;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Your usage description here";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -457,6 +480,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.amuammarzein.singl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -519,6 +545,14 @@
 				version = 5.6.0;
 			};
 		};
+		BED2D7412A6A7B2500C033DB /* XCRemoteSwiftPackageReference "Keyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/Keyboard.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.3.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +575,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BE647D672A652CBE0013185A /* XCRemoteSwiftPackageReference "AudioKitEX" */;
 			productName = AudioKitEX;
+		};
+		BED2D7422A6A7B2500C033DB /* Keyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BED2D7412A6A7B2500C033DB /* XCRemoteSwiftPackageReference "Keyboard" */;
+			productName = Keyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
