@@ -205,8 +205,9 @@ struct SongRecomendationShareView: View {
     @State var screenWidthShare:CGFloat = 2000
     @State var screenHeightShare:CGFloat = 4330.18
     @State var fontSizeTitle:CGFloat = 2000/18
+    @State var fontSizeTitleSub:CGFloat = 2000/20
     @State var fontSizeBody:CGFloat = 2000/25
-    @State var fontSizeDesc:CGFloat = 2000/23
+    @State var fontSizeDesc:CGFloat = 2000/26.5
     @State var fontSizeCallout:CGFloat = 2000/45
     @State var padding:CGFloat = 2000/45
     
@@ -248,11 +249,11 @@ struct SongRecomendationShareView: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
                                         } placeholder: {
-                                            ShimmerView().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
                                         }.padding(.trailing,padding)
                                         
                                         VStack(alignment:.leading,spacing:5){
-                                            Text(item.singer).lineLimit(1).font(.system(size: fontSizeTitle)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)
+                                            Text(item.singer).lineLimit(1).font(.system(size: fontSizeTitleSub)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)
                                             HStack(){
                                                 Text(item.desc).lineLimit(1).font(.system(size: fontSizeBody)).foregroundColor(.white)
                                                 Spacer()
@@ -269,11 +270,11 @@ struct SongRecomendationShareView: View {
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
                                         } placeholder: {
-                                            ShimmerView().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
                                         }.padding(.trailing,padding)
                                         
                                         VStack(alignment:.leading,spacing:5){
-                                            Text(item.title).lineLimit(1).font(.system(size: fontSizeTitle)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)
+                                            Text(item.title).lineLimit(1).font(.system(size: fontSizeTitleSub)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)
                                             HStack(){
                                                 Text(item.singer).lineLimit(1).font(.system(size: fontSizeBody)).foregroundColor(.white)
                                                 Spacer()

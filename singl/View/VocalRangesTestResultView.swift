@@ -176,7 +176,7 @@ struct VocalRangesTestResultView: View {
     @State var screenHeightShare:CGFloat = 4330.18
     @State var fontSizeTitle:CGFloat = 2000/15
     @State var fontSizeBody:CGFloat = 2000/25
-    @State var fontSizeDesc:CGFloat = 2000/23
+    @State var fontSizeDesc:CGFloat = 2000/26.5
     @State var fontSizeCallout:CGFloat = 2000/45
     @State var padding:CGFloat = 2000/45
     
