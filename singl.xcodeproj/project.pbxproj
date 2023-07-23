@@ -10,6 +10,7 @@
 		BE19257F2A696CBD000701DD /* VocalTypeTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */; };
 		BE1925812A697906000701DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1925802A697906000701DD /* ImagePicker.swift */; };
 		BE1925832A697A13000701DD /* SongRecomendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1925822A697A13000701DD /* SongRecomendationView.swift */; };
+		BE3C02372A6D313F0028016C /* SongRecomendationShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */; };
 		BE647D512A652C340013185A /* singlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE647D502A652C340013185A /* singlApp.swift */; };
 		BE647D532A652C340013185A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE647D522A652C340013185A /* ContentView.swift */; };
 		BE647D552A652C350013185A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE647D542A652C350013185A /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalTypeTestResultView.swift; sourceTree = "<group>"; };
 		BE1925802A697906000701DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BE1925822A697A13000701DD /* SongRecomendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRecomendationView.swift; sourceTree = "<group>"; };
+		BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRecomendationShareView.swift; sourceTree = "<group>"; };
 		BE647D4D2A652C340013185A /* singl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE647D502A652C340013185A /* singlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singlApp.swift; sourceTree = "<group>"; };
 		BE647D522A652C340013185A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,17 +167,18 @@
 				BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */,
 				BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */,
 				BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */,
-				BED2D7442A6A7B9400C033DB /* TunerView.swift */,
 				BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */,
 				BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */,
 				BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */,
 				BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */,
 				BEC5D8932A6674A600725CCD /* HomeView.swift */,
 				BE1925822A697A13000701DD /* SongRecomendationView.swift */,
+				BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */,
 				BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */,
 				BEC5D8A32A668A1A00725CCD /* DashboardView.swift */,
 				BE1925802A697906000701DD /* ImagePicker.swift */,
 				BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */,
+				BED2D7442A6A7B9400C033DB /* TunerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				BE1925832A697A13000701DD /* SongRecomendationView.swift in Sources */,
 				BED2D7472A6A7D8800C033DB /* PianoManager.swift in Sources */,
+				BE3C02372A6D313F0028016C /* SongRecomendationShareView.swift in Sources */,
 				BEC5D8982A6675AC00725CCD /* EndpointModel.swift in Sources */,
 				BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */,
 				BE647D532A652C340013185A /* ContentView.swift in Sources */,
@@ -433,7 +437,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +476,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

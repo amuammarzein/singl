@@ -8,7 +8,7 @@ struct SplashView: View {
             if(taskManager.isSkip){
                 HomeView()
             }else{
-                GetStartedView()
+                UseHeadphonesViews()
             }
         } else {
             VStack(spacing:20) {

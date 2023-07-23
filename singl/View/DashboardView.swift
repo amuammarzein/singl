@@ -15,6 +15,10 @@ struct DashboardView: View {
         @State private var selectedImage: UIImage?
     @AppStorage("profilePhoto") var profilePhotoData: Data?
     
+    
+     @State private var isTrue = true
+     @State private var isFalse = false
+    
 //    @EnvironmentObject var router: Router
     
     func saveProfilePhoto() {
@@ -29,9 +33,9 @@ struct DashboardView: View {
             if(!taskManager.isDashboard){
                 VocalRangesTestResultView()
             }else if(taskManager.isSong){
-                SongRecomendationView()
+                SongRecomendationView(isSinger: $isFalse)
             }else if(taskManager.isSinger){
-                SongRecomendationView()
+                SongRecomendationView(isSinger: $isTrue)
             }else{
                 VStack(){
                     ZStack(){
@@ -153,6 +157,7 @@ struct DashboardView: View {
                                     }.padding(.top,10)
                                     Button(
                                         action:{
+                                                taskManager.isMenuFalse()
                                             taskManager.isDashboardFalse()
                                         }
                                     ){
@@ -213,23 +218,29 @@ struct DashboardView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
                                                 ForEach(musicManager.arrSongsV2, id: \.self) { item in
-                                                    
-                                                    VStack(){
-                                                        
-                                                        AsyncImage(url: item.imgSong) { image in
-                                                            image
-                                                                .resizable()
-                                                                .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
-                                                        } placeholder: {
-                                                            ShimmerView().frame(width:100,height:100).cornerRadius(15)
+                                                    Button(
+                                                        action:{
+                                                            musicManager.openAppleMusicSongV2(song: item)
                                                         }
-                                                        
-                                                        VStack(alignment:.leading){
-                                                            Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
-                                                            Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                    ){
+                                                        VStack(){
+                                                            
+                                                            AsyncImage(url: item.imgSong) { image in
+                                                                image
+                                                                    .resizable()
+                                                                    .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
+                                                            } placeholder: {
+                                                                ShimmerView().frame(width:100,height:100).cornerRadius(15)
+                                                            }
+                                                            
+                                                            VStack(alignment:.leading){
+                                                                Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
+                                                                Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            }
                                                         }
-                                                    }.frame(width:100)
-                                                }
+                                                    }.foregroundColor(.black)
+                                                }.frame(width:100)
+                                                
                                             }
                                             
                                         }
@@ -259,7 +270,11 @@ struct DashboardView: View {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
                                                 ForEach(musicManager.arrSongsV2, id: \.self) { item in
-                                                    
+                                                    Button(
+                                                        action:{
+                                                            musicManager.openAppleMusicSingerV2(artist: item)
+                                                        }
+                                                    ){
                                                     VStack(){
                                                         
                                                         AsyncImage(url: item.imgSinger) { image in
@@ -273,6 +288,7 @@ struct DashboardView: View {
                                                         VStack(alignment:.leading){
                                                             Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
                                                         }
+                                                    }.foregroundColor(.black)
                                                     }.frame(width:100)
                                                 }
                                             }
@@ -293,6 +309,9 @@ struct DashboardView: View {
                         }
                     }.background(Color("Blue")).frame(maxWidth:.infinity, maxHeight:.infinity)
                 }.onAppear{
+                    taskManager.isMenuTrue()
+                    print("***")
+                    print(taskManager.isMenu)
                     taskManager.isTestFalse()
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()

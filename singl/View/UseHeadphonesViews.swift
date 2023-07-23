@@ -23,6 +23,7 @@ struct UseHeadphonesViews: View {
                     Spacer()
                     Button(
                         action:{
+                            taskManager.isMenuTrue()
                             taskManager.isDashboardTrue()
                         }){
                             Text("Skip this test").font(.callout).foregroundColor(.white).underline()
@@ -45,6 +46,7 @@ struct UseHeadphonesViews: View {
                 }.padding(.bottom,40)
                 Spacer()
             }.padding(.horizontal,30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue")).onAppear {
+                taskManager.isMenuFalse()
                 audioManager.playAudio()
             }.onDisappear{
                 audioManager.stopAudio()

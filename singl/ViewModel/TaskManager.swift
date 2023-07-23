@@ -29,13 +29,17 @@ class TaskManager:ObservableObject{
     @AppStorage("profilePhoto") var profilePhotoData: Data?
     
     
-//    @AppStorage("isMenu") var isMenu: Bool = true {
-//            didSet {
-//                objectWillChange.send()
-//            }
-//        }
-//
-    @Published var isMenu:Bool = true
+    @AppStorage("isMenu") var isMenu: Bool = true {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    @AppStorage("selectedTabIndex") var selectedTabIndex: Int = 0 {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+
     @Published var isShare:Bool = false
     @Published var isActive:Bool = false
     @Published var isDashboard:Bool = false

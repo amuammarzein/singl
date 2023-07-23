@@ -11,6 +11,11 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @State private var selectedTab: TabBarItem = .menu1
+    
+    @State private var isTrue = true
+    
+    
+    
 //    @EnvironmentObject var router: Router
     var body: some View {
         TabBarContainer(selection: $selectedTab) {
@@ -30,7 +35,7 @@ struct HomeView: View {
                 }else if(item.title == "Singer & Song"){
                     VStack(){
                         if(selectedTab == .menu3){
-                            SongRecomendationView()
+                            SongRecomendationView(isSinger: $isTrue)
                         }
                     }.tabBarItem(tab: item, selection: $selectedTab)
                 }else{
@@ -64,6 +69,8 @@ struct TabBarView: View {
     @Namespace private var namespace
     @State var localSelection: TabBarItem
     
+    @StateObject var taskManager:TaskManager = TaskManager()
+    
     var body: some View {
         //tabBarVersion1
         tabBarVersion2
@@ -73,15 +80,10 @@ struct TabBarView: View {
                 }
             }
     }
-}
-
-extension TabBarView {
-    private func switchToTab(tab: TabBarItem) {
+    
+    func switchToTab(tab: TabBarItem) {
         selection = tab
     }
-}
-
-extension TabBarView {
     private func tabView1(tab: TabBarItem) -> some View {
         VStack {
             Image(tab.image)
@@ -106,10 +108,7 @@ extension TabBarView {
             }
         }
     }
-}
-
-// tabBarVersion2
-extension TabBarView {
+    
     private func tabView2(tab: TabBarItem) -> some View {
         VStack {
             Image(localSelection == tab ? tab.imageSel : tab.image)
@@ -147,9 +146,10 @@ extension TabBarView {
         .background(Color.white)
         .cornerRadius(10)
         .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
-        .padding(.horizontal).opacity(1)
+        .padding(.horizontal).opacity(taskManager.isMenu ? 1 : 0)
     }
 }
+
 
 struct TabBarView_Previews: PreviewProvider {
     

@@ -34,15 +34,23 @@ struct VocalTypeTestResultViews: View {
                     Image(systemName: "music.mic").foregroundColor(.white)  .font(.system(size: 100)).bold()
                     Text("Let's move on to the next step\nFor a detailed result, click the button below to start this vocal range check").foregroundColor(.white).font(.title3).bold()
                         .multilineTextAlignment(.center)
-                    Button(
-                        action:{
-                            taskManager.isNextTrue()
-                        }){
-                            Text("Test your vocal range").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
-                        }.frame(maxWidth:.infinity).background(.white).cornerRadius(30)
+                    if(taskManager.isActive){
+                        Button(
+                            action:{
+                                taskManager.isNextTrue()
+                            }){
+                                Text("Test your vocal range").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
+                            }.frame(maxWidth:.infinity).background(.white).cornerRadius(30)
+                    }
                 }.padding(.bottom,40)
                 Spacer()
-            }.padding(.horizontal,30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue"))
+            }.padding(.horizontal,30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue")).onReceive(taskManager.timer) { time in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    withAnimation {
+                        taskManager.isActiveTrue()
+                    }
+                }
+            }
         }
         
     }

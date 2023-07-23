@@ -30,6 +30,7 @@ struct VocalRangesTestResultView: View {
                 HStack(spacing:0){
                     Button(
                         action:{
+                            taskManager.isMenuTrue()
                             taskManager.isBackTrue()
                         }){
                             Image(systemName:"chevron.left").foregroundColor(.white).font(.title3).fontWeight(.bold)
@@ -40,7 +41,7 @@ struct VocalRangesTestResultView: View {
                         action:{
                             self.items.removeAll()
                             
-                            guard let resultImage = ImageRenderer(content: cardResultShareView).uiImage else {
+                            guard let resultImage = ImageRenderer(content: shareView).uiImage else {
                                 return
                             }
                             self.items.append(resultImage)
@@ -58,6 +59,8 @@ struct VocalRangesTestResultView: View {
                             VStack(){
                                 Button(
                                     action:{
+                                        taskManager.selectedTabIndex = 0
+                                        taskManager.isMenuTrue()
                                         taskManager.isNextTrue()
                                     }){
                                         Text("Explore More!").foregroundColor(Color("Blue")).font(.body).bold().padding(20)
@@ -76,7 +79,7 @@ struct VocalRangesTestResultView: View {
                                     action:{
                                         self.items.removeAll()
                                         
-                                        guard let resultImage = ImageRenderer(content: cardResultShareView).uiImage else {
+                                        guard let resultImage = ImageRenderer(content: shareView).uiImage else {
                                             return
                                         }
                                         self.items.append(resultImage)
@@ -93,7 +96,7 @@ struct VocalRangesTestResultView: View {
                             }.padding(30)
                             
                         }
-                    }.padding(.bottom,100)
+                    }.padding(.bottom,0)
                     
                 }
             }.frame(maxWidth: .infinity,maxHeight:.infinity).background(Color("Blue")).onAppear{
@@ -173,11 +176,11 @@ struct VocalRangesTestResultView: View {
     @State var screenHeightShare:CGFloat = 4330.18
     @State var fontSizeTitle:CGFloat = 2000/15
     @State var fontSizeBody:CGFloat = 2000/25
-    @State var fontSizeDesc:CGFloat = 2000/30
+    @State var fontSizeDesc:CGFloat = 2000/23
     @State var fontSizeCallout:CGFloat = 2000/45
     @State var padding:CGFloat = 2000/45
     
-    var cardResultShareView: some View {
+    var shareView: some View {
         VStack(){
             ZStack(){
                 Image("CardShareFrame").resizable().scaledToFit().frame(maxWidth:.infinity).padding(0)

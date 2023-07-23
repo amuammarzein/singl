@@ -168,7 +168,7 @@ struct VocalRangesTestView: View {
                                         ){
                                             ZStack(){
                                                 Rectangle().foregroundColor(tunerManager.data.questionColor).frame(width:70,height:CGFloat(barHeight*10)).cornerRadius(15)
-                                                Text(item.nameFull).font(.body)
+                                                Text(item.nameFull).font(.body).foregroundColor(.black)
                                             }
                                         }
                                         
