@@ -513,6 +513,8 @@ struct SongConverterView: View {
                         
                         Button(
                             action:{
+                                frequencySelected = 0
+                                changePitch()
                                 resetAudio()
                             }
                         ){
