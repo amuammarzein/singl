@@ -231,26 +231,27 @@ struct SongRecomendationShareView: View {
                         }
                         Text(taskManager.fullName).font(.system(size: fontSizeDesc)).foregroundColor(.white).lineLimit(1)
                         Spacer()
-                    }.padding(.bottom,padding)
+                    }.padding(.bottom,padding * 6)
                     
                     HStack(){
                         Text(isSinger ? "Singers who share the same vocal type like me:" : "Song that match my vocal range:").foregroundColor(.white).font(.system(size: fontSizeTitle)).bold()
-                            .multilineTextAlignment(.leading).padding(.top,20).frame(maxWidth: screenWidthShare * 0.5)
+                            .multilineTextAlignment(.leading).padding(.top,20)
+//                            .frame(maxWidth: screenWidthShare * 0.5)
                         Spacer()
-                    }.padding(.bottom,padding)
+                    }.padding(.bottom,padding*2)
                     
-                    VStack() {
+                    VStack(spacing:padding*2) {
                         ForEach(musicManager.arrSongsV2, id: \.self) { item in
                             if(isSinger){
                                 VStack(){
                                     HStack(){
-                                        AsyncImage(url: item.imgSinger) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
-                                        } placeholder: {
-                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
-                                        }.padding(.trailing,padding)
+//                                        AsyncImage(url: item.imgSinger) { image in
+//                                            image
+//                                                .resizable()
+//                                                .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+//                                        } placeholder: {
+//                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+//                                        }.padding(.trailing,padding)
                                         
                                         VStack(alignment:.leading,spacing:5){
                                             Text(item.singer).lineLimit(1).font(.system(size: fontSizeTitleSub)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)
@@ -265,13 +266,13 @@ struct SongRecomendationShareView: View {
                             }else{
                                 VStack(){
                                     HStack(){
-                                        AsyncImage(url: item.imgSong) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
-                                        } placeholder: {
-                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
-                                        }.padding(.trailing,padding)
+//                                        AsyncImage(url: item.imgSong) { image in
+//                                            image
+//                                                .resizable()
+//                                                .aspectRatio(contentMode: .fit).frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+//                                        } placeholder: {
+//                                            Rectangle().frame(width:screenWidthShare*0.2,height:screenWidthShare*0.2).cornerRadius(60)
+//                                        }.padding(.trailing,padding)
                                         
                                         VStack(alignment:.leading,spacing:5){
                                             Text(item.title).lineLimit(1).font(.system(size: fontSizeTitleSub)).bold().foregroundColor(.white).padding(.bottom,padding*0.5)

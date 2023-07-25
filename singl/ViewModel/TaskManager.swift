@@ -40,6 +40,7 @@ class TaskManager:ObservableObject{
         }
     }
 
+    @Published var isPiano:Bool = false
     @Published var isShare:Bool = false
     @Published var isActive:Bool = false
     @Published var isDashboard:Bool = false

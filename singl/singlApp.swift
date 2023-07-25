@@ -16,6 +16,7 @@ struct TrialNavigationStackApp: App {
         WindowGroup {
             NavigationStack(path: $router.path) {
                 SplashView()
+//                VocalRangesTestView()
 //                TunerView()
                     .navigationDestination(for: Destination.self) { destination in
                         // logic to handle destination can be here...
@@ -28,7 +29,7 @@ struct TrialNavigationStackApp: App {
                         
                         
                     }
-            }
+            }.preferredColorScheme(.light)
             .environmentObject(router)
         }
     }

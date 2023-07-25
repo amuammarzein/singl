@@ -12,6 +12,11 @@ struct VocalTypeTestView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var tunerManager:TunerManager = TunerManager()
     
+    @State var isVoicing = false
+    var animation: Animation {
+        return .easeInOut
+    }
+    
     var body: some View {
         
         
@@ -44,14 +49,20 @@ struct VocalTypeTestView: View {
                 
                 if(tunerManager.data.inputLevel > 0.2){
                     HStack(spacing:12){
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-75)).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-50)).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-25)).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel))).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-25)).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-50)).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:CGFloat(50+(80 * tunerManager.data.inputLevel)-75)).cornerRadius(20)
-                    }.frame(maxHeight:130)
+                        Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-75) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-50) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-25) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-25) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-50) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-75) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
+                                           }
+                                           .onAppear{
+                                               isVoicing.toggle()
+                                           }
+                                           .onDisappear{
+                                               isVoicing.toggle()
+                                           }.frame(maxHeight:130)
                 }else{
                     HStack(spacing:12){
                         Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
@@ -61,6 +72,11 @@ struct VocalTypeTestView: View {
                         Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
                         Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
                         Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
+                    } .onAppear{
+                        isVoicing.toggle()
+                    }
+                    .onDisappear{
+                        isVoicing.toggle()
                     }.frame(maxHeight:130)
                 }
                 

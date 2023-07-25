@@ -17,6 +17,11 @@ struct VocalRangesTestView: View {
     @State var screenHeight = UIScreen.main.bounds.height
     @State var barHeight: Float = 0
     
+    @State var isVoicing = false
+    var animation: Animation {
+        return .easeInOut
+    }
+    
     func setup(){
         barHeight = Float(screenHeight) / Float(tunerManager.data.arrNote.count) / 4.5
     }
@@ -54,18 +59,37 @@ struct VocalRangesTestView: View {
                     
                     taskManager.timeRemaining = tunerManager.data.questionUpCountdown
                     
+//                    print("Play MIDI")
+                    
+                    let noteNumber:Int = pianoManager.noteNumber(noteName: tunerManager.data.questionNoteName, octave: tunerManager.data.questionNoteOctave)!
+//                    print("***")
+//                    print(tunerManager.data.questionNoteName)
+//                    print(String(tunerManager.data.questionNoteOctave))
+//                    print(noteNumber)
+                    pianoManager.noteOn(noteNumber:noteNumber)
+                    
                 }.onDisappear{
                     tunerManager.stop()
                     pianoManager.stop()
                 }.onReceive(taskManager.timer) { time in
                     
                     if(tunerManager.data.renewTime){
-                        print(tunerManager.data.renewTime)
-                        print(tunerManager.data.questionStatus)
+//                        print(tunerManager.data.renewTime)
+//                        print(tunerManager.data.questionStatus)
                         if(tunerManager.data.questionStatus == .delay){
                             taskManager.timeRemaining = tunerManager.data.questionDelay
                         }else if(tunerManager.data.questionStatus == .play){
                             taskManager.timeRemaining = tunerManager.data.questionUpCountdown
+                        }
+                        if(taskManager.timeRemaining  == tunerManager.data.questionUpCountdown){
+//                            print("Play MIDI")
+                            
+                            let noteNumber:Int = pianoManager.noteNumber(noteName: tunerManager.data.questionNoteName, octave: tunerManager.data.questionNoteOctave)!
+//                            print("***")
+//                            print(tunerManager.data.questionNoteName)
+//                            print(String(tunerManager.data.questionNoteOctave))
+//                            print(noteNumber)
+                            pianoManager.noteOn(noteNumber:noteNumber)
                         }
                         tunerManager.data.renewTime = false
                     }
@@ -137,7 +161,12 @@ struct VocalRangesTestView: View {
                                                     Rectangle().foregroundColor(Color("Orange")).frame(width:40,height:CGFloat(barHeight))
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
-                                            }
+                                            }.animation(animation.speed(1), value: isVoicing)
+                                        }.onAppear{
+                                            isVoicing.toggle()
+                                        }
+                                        .onDisappear{
+                                            isVoicing.toggle()
                                         }
                                     }
                                     
@@ -160,9 +189,9 @@ struct VocalRangesTestView: View {
                                         Button(
                                             action:{
                                                 let noteNumber:Int = pianoManager.noteNumber(noteName: item.name, octave: item.octave)!
-                                                print("***")
-                                                print(item.nameFull)
-                                                print(String(noteNumber))
+//                                                print("***")
+//                                                print(item.nameFull)
+//                                                print(String(noteNumber))
                                                 pianoManager.noteOn(noteNumber:noteNumber)
                                             }
                                         ){

@@ -35,6 +35,8 @@ struct TunerData {
     var singingDuration:Int = 15
     var questionColor:Color = .white
     var questionNote:String = "-"
+    var questionNoteName:String = "-"
+    var questionNoteOctave:Int = 1
     var questionNoteTmp:String = "-"
     var questionMaxFrequency:Double = 0.0
     var questionStatus:QuestionStatus = .play
@@ -51,7 +53,8 @@ struct TunerData {
     var noteName: String = "-"
     var noteOctave: Int = 1
     var renewTime: Bool = false
-    var answerNoteMonitoring:[String] = ["-","-","-","-","-","-","-","-","-","-",]
+    var answerNoteMonitoring:[String] = ["-","-","-","-","-","-","-","-","-","-",
+                                         "-","-","-","-","-",]
 }
 
 struct NoteData {

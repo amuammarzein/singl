@@ -16,6 +16,8 @@ struct VocalRangesTestResultView: View {
     @State var screenWidth = UIScreen.main.bounds.width
     @State var screenHeight = UIScreen.main.bounds.height
     
+    
+    
     var body: some View {
         if(taskManager.isNext){
             DashboardView()
@@ -110,11 +112,11 @@ struct VocalRangesTestResultView: View {
         ZStack(){
             Image("CardShareFrame").resizable().scaledToFit().frame(maxWidth:.infinity).padding(0)
             VStack(spacing:7){
-                Text("Your Vocal\n Range is:").font(.title3).bold().multilineTextAlignment(.center)
-                Text(taskManager.vocalRange).font(.largeTitle).fontWeight(.heavy)
-                Text("Your Vocal\n Type is:").font(.title3).bold().multilineTextAlignment(.center)
-                Text(taskManager.vocalType).font(.largeTitle).fontWeight(.heavy)
-                Text("Look, We’ve Found Similar Singers To You:").font(.title3).bold().multilineTextAlignment(.center)
+                Text("Your Vocal\n Range is:").font(.title3).bold().multilineTextAlignment(.center).foregroundColor(Color("Navy"))
+                Text(taskManager.vocalRange).font(.largeTitle).fontWeight(.heavy).foregroundColor(Color("Navy"))
+                Text("Your Vocal\n Type is:").font(.title3).bold().multilineTextAlignment(.center).foregroundColor(Color("Navy"))
+                Text(taskManager.vocalType).font(.largeTitle).fontWeight(.heavy).foregroundColor(Color("Navy"))
+                Text("Look, We’ve Found Similar Singers To You:").font(.title3).bold().multilineTextAlignment(.center).foregroundColor(Color("Navy"))
                 
                 if(musicManager.arrSongsV2.count > 0){
                     HStack(){
