@@ -209,8 +209,8 @@ class TunerManager: ObservableObject, HasAudioEngine {
     
     func update(_ pitch: AUValue, _ amp: AUValue) {
         
-        print("Piano Status")
-        print(taskManager.isPiano)
+//        print("Piano Status")
+//        print(taskManager.isPiano)
         
         if(!taskManager.isPiano){
             data.answerNote = ""

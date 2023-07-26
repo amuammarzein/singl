@@ -82,7 +82,6 @@ struct SongConverterView: View {
     }
     
     func signCheck(){
-        changePitch()
         if(frequencySelected > 0){
             sign = "+"
         }else{
@@ -91,6 +90,13 @@ struct SongConverterView: View {
         
         convert()
         
+    }
+    func signCheck2(){
+        if(frequencySelected > 0){
+            sign = "+"
+        }else{
+            sign = ""
+        }
     }
     
     func convert(){
@@ -448,9 +454,11 @@ struct SongConverterView: View {
                 
 //                applyAudioEffect(to: destinationURL)
                 
+                resetAudio()
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     isDownload = false
-                    shareLink(url: audioURL)
+                    shareLink(url: destinationURL)
                     print("CONVERTED MP3")
                     print(destinationURL)
                 }
@@ -501,10 +509,7 @@ struct SongConverterView: View {
     }
     
     
-    func changePitch(){
-        audioUnitTimePitch.pitch = Float(frequencySelected)
-        print(frequencySelected)
-    }
+   
     
     var body: some View {
         if(isBack){
@@ -533,7 +538,7 @@ struct SongConverterView: View {
                                         .foregroundColor(.white).padding(.leading,0).lineLimit(1)
                                     Spacer()
                                     Button(
-                                        action:{                                        isAlert = true
+                                        action:{                isAlert = true
                                         }){
                                             Image(systemName:"xmark").foregroundColor(.white)
                                         }.alert(isPresented: $isAlert) {
@@ -541,10 +546,14 @@ struct SongConverterView: View {
                                                 title: Text("Confirmation"),
                                                 message: Text("Are you sure you want to delete this song?"),
                                                 primaryButton: .default(Text("Delete Song").foregroundColor(.red), action: {
+                                                    
+                                                    
                                                     isDone = false
                                                     isProcess = false
                                                     isProcessConverter = false
                                                     resetAudio()
+                                                    frequencySelected = 0
+                                                    signCheck2()
                                                     
                                                 }),
                                                 secondaryButton: .default(Text("Cancel"))
@@ -613,7 +622,13 @@ struct SongConverterView: View {
                                 }){
                                     Image(systemName:"triangle.fill").foregroundColor(Color("Yellow")).font(.system(size: 50)).fontWeight(.bold)
                                 }.opacity(!isProcessConverter ? 1 : 0.5).disabled(isProcessConverter ? true : false)
-                            Text(sign+"\(String(format: "%.0f", frequencySelected))").foregroundColor(Color(.white)).font(.largeTitle).padding(.vertical,5)
+                            if(isProcessConverter){
+                                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white)).font(.largeTitle).frame(height:50)
+                            }else{
+                                Text(sign+"\(String(format: "%.0f", frequencySelected))").foregroundColor(Color(.white)).font(.largeTitle).padding(.vertical,0).frame(height:50)
+
+                            }
+                            
                             
                             Button(
                                 action:{
@@ -651,7 +666,6 @@ struct SongConverterView: View {
                             action:{
                                 frequencySelected = 0
                                 signCheck()
-                                changePitch()
                                 resetAudio()
                             }
                         ){
@@ -684,9 +698,10 @@ struct SongConverterView: View {
                     audioEngine.stop()
                     audioPlayerNode.stop()
                 }
-            }.alert(isPresented: $showAlert) {
-                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
+//            .alert(isPresented: $showAlert) {
+//                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+//            }
         }
     }
 }

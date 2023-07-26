@@ -26,11 +26,11 @@ class PianoManager: ObservableObject, HasAudioEngine {
     func noteOn(noteNumber: Int) {
         instrument.volume = 1
         if(noteNumber >= 0){
-            print("Piano On")
+//            print("Piano On")
             taskManager.isPiano = true
             instrument.play(noteNumber: MIDINoteNumber(noteNumber), velocity: 90, channel: 0)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("Piano Off")
+//                print("Piano Off")
                 self.taskManager.isPiano = false
             }
         }
