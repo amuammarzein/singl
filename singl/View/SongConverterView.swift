@@ -707,6 +707,7 @@ struct SongConverterView: View {
                 }.padding(30).padding(.top,30).frame(maxWidth:.infinity, maxHeight:.infinity).background(Color("Blue")).ignoresSafeArea().onAppear{
                     setupAudioEngine()
                 }.onDisappear{
+                    resetAudio()
                     audioEngine.stop()
                     audioPlayerNode.stop()
                 }
