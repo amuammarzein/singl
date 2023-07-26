@@ -671,7 +671,7 @@ struct SongConverterView: View {
                                 playAudio()
                             }
                         ){
-                            Text("Play").font(.callout)
+                            Text("Play").font(.callout).foregroundColor(.white).underline()
                         }.opacity(isDone ? 1 : 1).disabled(isDone ? false : true)
                         
                         Button(
@@ -681,7 +681,7 @@ struct SongConverterView: View {
                                 resetAudio()
                             }
                         ){
-                            Text("Reset").font(.callout)
+                            Text("Reset").font(.callout).foregroundColor(.white).underline()
                         }.opacity(isDone ? 1 : 1).disabled(isDone ? false : true)
                     }.padding(.bottom,25)
                     
