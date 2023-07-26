@@ -209,260 +209,266 @@ class TunerManager: ObservableObject, HasAudioEngine {
     
     func update(_ pitch: AUValue, _ amp: AUValue) {
         
-        data.answerNote = ""
+        print("Piano Status")
+        print(taskManager.isPiano)
         
-        var inputLvl:Float = 0
-        if(amp > 0.1){
-            inputLvl = amp + 0.6
-            if(inputLvl >= 1){
-                inputLvl = 1
-            }
-        }
-        data.inputLevel = inputLvl
-        
-        
-        clock += 1
-        
-        
-        if(data.questionStatus == .play){
-            data.questionColor = .white
-        }
-        
-        if(data.questionStatus == .done){
-            var noteFinal:NoteData = NoteData(name: "", octave: 0, nameFull: "", minFrequency: 0, maxFrequency: 0)
-            if(data.questionType == "Up"){
-                var index = 0
-                var indexSelected = 0
-                for _ in 0..<data.arrNote.count-1 {
-                    if(data.arrNote[index].nameFull == data.questionNote){
-                        indexSelected = index
-                    }
-                    index += 1
+        if(!taskManager.isPiano){
+            data.answerNote = ""
+            
+            var inputLvl:Float = 0
+            if(amp > 0.1){
+                inputLvl = amp + 0.6
+                if(inputLvl >= 1){
+                    inputLvl = 1
                 }
-                data.questionNoteTmp = data.arrNote[indexSelected+1].nameFull
-                data.questionMaxFrequency = data.arrNote[indexSelected+1].maxFrequency
-                noteFinal = data.arrNote[indexSelected+1]
-            }else{
-                var index = 0
-                var indexSelected = 0
-                for _ in 0..<data.arrNote.count-1 {
-                    print(data.arrNote[index].nameFull+" - "+data.questionNote)
-                    if(data.arrNote[index].nameFull == data.questionNote){
-                        indexSelected = index
-                    }
-                    index += 1
-                }
-                data.questionNoteTmp = data.arrNote[indexSelected].nameFull
-                data.questionMaxFrequency = data.arrNote[indexSelected].maxFrequency
-                noteFinal = data.arrNote[indexSelected]
             }
-            //            print(data.questionType)
-            //            print(data.questionNote)
-            //            print(data.questionNoteTmp)
-            data.questionMaxFrequency -= 1
-            //            print(data.questionMaxFrequency)
-            data.questionMessage = "Test done! your max note range is "+data.questionNoteTmp+". In a moment you will be redirected to the test result"
-            
-            if(data.questionMaxFrequency > 1046.50){
-                data.vocalType = "> Sopran"
-            }else if(data.questionMaxFrequency <= 329.63){
-                // E2 – E4
-                data.vocalType = "Bass"
-            }else if(data.questionMaxFrequency <= 440.00){
-                // A2 – A4
-                data.vocalType = "Baritone"
-            }else if(data.questionMaxFrequency <= 523.25){
-                // C3 – C5
-                data.vocalType = "Tenor"
-            }else if(data.questionMaxFrequency <= 659.26){
-                // E3 - E5
-                data.vocalType = "Countertenor"
-            }else if(data.questionMaxFrequency <= 698.46){
-                // F3 - F5
-                data.vocalType = "Alto"
-            }else if(data.questionMaxFrequency <= 880.00){
-                // A3 – A5
-                data.vocalType = "Mezzo-Soprano"
-            }else if(data.questionMaxFrequency <= 1046.50){
-                //C4 – C6
-                data.vocalType = "Sopran"
-            }else{
-                data.vocalType = "-"
-            }
+            data.inputLevel = inputLvl
             
             
-            taskManager.vocalType = data.vocalType
-            taskManager.vocalMaxNote = noteFinal.name
-            taskManager.vocalMaxOctave = noteFinal.octave
-            taskManager.vocalMaxFrequency = noteFinal.maxFrequency
-            data.maxNote = noteFinal.name+""+String(noteFinal.octave)
-            data.vocalRange = taskManager.vocalMinNote+String(taskManager.vocalMinOctave)+" - "+(data.maxNote)
-            taskManager.vocalRange = data.vocalRange
+            clock += 1
             
             
-        }else if(data.questionStatus == .delay){
-            if(clock > data.questionDelay * 10){
-                
-                if(data.questionType == "Up"){
-                    let note:NoteData = NoteData(name: data.noteName, octave: data.noteOctave, nameFull:data.noteName+""+String(data.noteOctave),  minFrequency: 0, maxFrequency: 0)
-                    let noteAbove = getNoteAbove(note: note)
-                    data.questionNote = noteAbove.name+""+String(noteAbove.octave)
-                    data.questionNoteName = noteAbove.name
-                    data.questionNoteOctave = noteAbove.octave
-                    data.noteName = noteAbove.name
-                    data.noteOctave = noteAbove.octave
-                }else{
-                    let note:NoteData = NoteData(name: data.noteName, octave: data.noteOctave, nameFull:data.noteName+""+String(data.noteOctave),  minFrequency: 0, maxFrequency: 0)
-                    let noteBelow = getNoteBelow(note: note)
-                    data.questionNote = noteBelow.name+""+String(noteBelow.octave)
-                    data.questionNoteName = noteBelow.name
-                    data.questionNoteOctave = noteBelow.octave
-                    data.noteName = noteBelow.name
-                    data.noteOctave = noteBelow.octave
-                }
-                data.questionStatus = .play
+            if(data.questionStatus == .play){
                 data.questionColor = .white
-                data.isCorrect = false
-                data.questionMessage = "Sing the note for "+data.questionNote+" in 1 second"
-                clock = 0
-                data.renewTime = true
-                
             }
-        }else if(data.questionStatus == .play){
-            if(clock > data.questionUpCountdown * 10){
+            
+            if(data.questionStatus == .done){
+                var noteFinal:NoteData = NoteData(name: "", octave: 0, nameFull: "", minFrequency: 0, maxFrequency: 0)
                 if(data.questionType == "Up"){
-                    clock = 0
-                    data.questionStatus = .done
-                    print("Done Up!")
-                    data.renewTime = true
-                }else if(data.questionUpLimit-1 < 1){
-                    clock = 0
-                    data.questionStatus = .done
-                    print("Done Down!")
-                    data.renewTime = true
+                    var index = 0
+                    var indexSelected = 0
+                    for _ in 0..<data.arrNote.count-1 {
+                        if(data.arrNote[index].nameFull == data.questionNote){
+                            indexSelected = index
+                        }
+                        index += 1
+                    }
+                    data.questionNoteTmp = data.arrNote[indexSelected+1].nameFull
+                    data.questionMaxFrequency = data.arrNote[indexSelected+1].maxFrequency
+                    noteFinal = data.arrNote[indexSelected+1]
                 }else{
-                    data.questionUpLimit -= 1
-                    data.questionType = "Down"
-                    data.questionMessage = "Looks like you can't hit those notes! in 3 seconds we'll will drop a note for you"
+                    var index = 0
+                    var indexSelected = 0
+                    for _ in 0..<data.arrNote.count-1 {
+                        print(data.arrNote[index].nameFull+" - "+data.questionNote)
+                        if(data.arrNote[index].nameFull == data.questionNote){
+                            indexSelected = index
+                        }
+                        index += 1
+                    }
+                    data.questionNoteTmp = data.arrNote[indexSelected].nameFull
+                    data.questionMaxFrequency = data.arrNote[indexSelected].maxFrequency
+                    noteFinal = data.arrNote[indexSelected]
+                }
+                //            print(data.questionType)
+                //            print(data.questionNote)
+                //            print(data.questionNoteTmp)
+                data.questionMaxFrequency -= 1
+                //            print(data.questionMaxFrequency)
+                data.questionMessage = "Test done! your max note range is "+data.questionNoteTmp+". In a moment you will be redirected to the test result"
+                
+                if(data.questionMaxFrequency > 1046.50){
+                    data.vocalType = "> Sopran"
+                }else if(data.questionMaxFrequency <= 329.63){
+                    // E2 – E4
+                    data.vocalType = "Bass"
+                }else if(data.questionMaxFrequency <= 440.00){
+                    // A2 – A4
+                    data.vocalType = "Baritone"
+                }else if(data.questionMaxFrequency <= 523.25){
+                    // C3 – C5
+                    data.vocalType = "Tenor"
+                }else if(data.questionMaxFrequency <= 659.26){
+                    // E3 - E5
+                    data.vocalType = "Countertenor"
+                }else if(data.questionMaxFrequency <= 698.46){
+                    // F3 - F5
+                    data.vocalType = "Alto"
+                }else if(data.questionMaxFrequency <= 880.00){
+                    // A3 – A5
+                    data.vocalType = "Mezzo-Soprano"
+                }else if(data.questionMaxFrequency <= 1046.50){
+                    //C4 – C6
+                    data.vocalType = "Sopran"
+                }else{
+                    data.vocalType = "-"
+                }
+                
+                
+                taskManager.vocalType = data.vocalType
+                taskManager.vocalMaxNote = noteFinal.name
+                taskManager.vocalMaxOctave = noteFinal.octave
+                taskManager.vocalMaxFrequency = noteFinal.maxFrequency
+                data.maxNote = noteFinal.name+""+String(noteFinal.octave)
+                data.vocalRange = taskManager.vocalMinNote+String(taskManager.vocalMinOctave)+" - "+(data.maxNote)
+                taskManager.vocalRange = data.vocalRange
+                
+                
+            }else if(data.questionStatus == .delay){
+                if(clock > data.questionDelay * 10){
+                    
+                    if(data.questionType == "Up"){
+                        let note:NoteData = NoteData(name: data.noteName, octave: data.noteOctave, nameFull:data.noteName+""+String(data.noteOctave),  minFrequency: 0, maxFrequency: 0)
+                        let noteAbove = getNoteAbove(note: note)
+                        data.questionNote = noteAbove.name+""+String(noteAbove.octave)
+                        data.questionNoteName = noteAbove.name
+                        data.questionNoteOctave = noteAbove.octave
+                        data.noteName = noteAbove.name
+                        data.noteOctave = noteAbove.octave
+                    }else{
+                        let note:NoteData = NoteData(name: data.noteName, octave: data.noteOctave, nameFull:data.noteName+""+String(data.noteOctave),  minFrequency: 0, maxFrequency: 0)
+                        let noteBelow = getNoteBelow(note: note)
+                        data.questionNote = noteBelow.name+""+String(noteBelow.octave)
+                        data.questionNoteName = noteBelow.name
+                        data.questionNoteOctave = noteBelow.octave
+                        data.noteName = noteBelow.name
+                        data.noteOctave = noteBelow.octave
+                    }
+                    data.questionStatus = .play
+                    data.questionColor = .white
+                    data.isCorrect = false
+                    data.questionMessage = "Sing the note for "+data.questionNote+" in 1 second"
                     clock = 0
-                    data.questionStatus = .delay
-                    print("Limit "+String(data.questionUpLimit))
                     data.renewTime = true
+                    
+                }
+            }else if(data.questionStatus == .play){
+                if(clock > data.questionUpCountdown * 10){
+                    if(data.questionType == "Up"){
+                        clock = 0
+                        data.questionStatus = .done
+                        print("Done Up!")
+                        data.renewTime = true
+                    }else if(data.questionUpLimit-1 < 1){
+                        clock = 0
+                        data.questionStatus = .done
+                        print("Done Down!")
+                        data.renewTime = true
+                    }else{
+                        data.questionUpLimit -= 1
+                        data.questionType = "Down"
+                        data.questionMessage = "Looks like you can't hit those notes! in 3 seconds we'll will drop a note for you"
+                        clock = 0
+                        data.questionStatus = .delay
+                        print("Limit "+String(data.questionUpLimit))
+                        data.renewTime = true
+                    }
                 }
             }
-        }
-        
-        // Reduces sensitivity to background noise to prevent random / fluctuating data.
-        guard amp > 0.1 else { return }
-        
-        data.pitch = pitch
-        data.amplitude = amp
-        
-        var frequency = pitch
-        
-        frequencyNow = Double(String(format: "%.2f", pitch)) ?? 0
-        
-        while frequency > Float(noteFrequencies[noteFrequencies.count - 1]) {
-            frequency /= 2.0
-        }
-        while frequency < Float(noteFrequencies[0]) {
-            frequency *= 2.0
-        }
-        
-        var minDistance: Float = 10000.0
-        var index = 0
-        
-        for possibleIndex in 0 ..< noteFrequencies.count {
-            let distance = fabsf(Float(noteFrequencies[possibleIndex]) - frequency)
-            if distance < minDistance {
-                index = possibleIndex
-                minDistance = distance
+            
+            // Reduces sensitivity to background noise to prevent random / fluctuating data.
+            guard amp > 0.1 else { return }
+            
+            data.pitch = pitch
+            data.amplitude = amp
+            
+            var frequency = pitch
+            
+            frequencyNow = Double(String(format: "%.2f", pitch)) ?? 0
+            
+            while frequency > Float(noteFrequencies[noteFrequencies.count - 1]) {
+                frequency /= 2.0
             }
-        }
-        let octave = Int(log2f(pitch / frequency))
-        data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
-        data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
-        
-        noteNow = noteNamesWithSharps[index]
-        
-        answerNoteMonitoring.removeFirst()
-        answerNoteMonitoring.append(data.noteNameWithSharps)
-        //        print("***")
-        //        print(answerNoteMonitoring)
-        if(isAllElementsSame(in: answerNoteMonitoring) && answerNoteMonitoring[0] != "-"){
-            //            print(true)
-            if(frequencyNow > data.maxFrequency){
-                data.maxFrequency = frequencyNow
-                data.maxNote = data.noteNameWithSharps
-                data.maxNote = noteNow
-                data.maxOctave = octave
+            while frequency < Float(noteFrequencies[0]) {
+                frequency *= 2.0
             }
-            if(data.minFrequency > 0){
-                if(frequencyNow < data.minFrequency){
+            
+            var minDistance: Float = 10000.0
+            var index = 0
+            
+            for possibleIndex in 0 ..< noteFrequencies.count {
+                let distance = fabsf(Float(noteFrequencies[possibleIndex]) - frequency)
+                if distance < minDistance {
+                    index = possibleIndex
+                    minDistance = distance
+                }
+            }
+            let octave = Int(log2f(pitch / frequency))
+            data.noteNameWithSharps = "\(noteNamesWithSharps[index])\(octave)"
+            data.noteNameWithFlats = "\(noteNamesWithFlats[index])\(octave)"
+            
+            noteNow = noteNamesWithSharps[index]
+            
+            answerNoteMonitoring.removeFirst()
+            answerNoteMonitoring.append(data.noteNameWithSharps)
+            //        print("***")
+            //        print(answerNoteMonitoring)
+            if(isAllElementsSame(in: answerNoteMonitoring) && answerNoteMonitoring[0] != "-"){
+                //            print(true)
+                if(frequencyNow > data.maxFrequency){
+                    data.maxFrequency = frequencyNow
+                    data.maxNote = data.noteNameWithSharps
+                    data.maxNote = noteNow
+                    data.maxOctave = octave
+                }
+                if(data.minFrequency > 0){
+                    if(frequencyNow < data.minFrequency){
+                        data.minFrequency = frequencyNow
+                        data.minNote = data.noteNameWithSharps
+                        data.minNote = noteNow
+                        data.minOctave = octave
+                    }
+                }else{
                     data.minFrequency = frequencyNow
                     data.minNote = data.noteNameWithSharps
                     data.minNote = noteNow
                     data.minOctave = octave
                 }
-            }else{
-                data.minFrequency = frequencyNow
-                data.minNote = data.noteNameWithSharps
-                data.minNote = noteNow
-                data.minOctave = octave
-            }
-            data.vocalRange = "\(data.minNote)\(data.minOctave) - \(data.maxNote)\(data.maxOctave)"
-            //            print("***")
-            //            print(data.maxNote)
-            //            print(data.maxFrequency)
-            if(data.maxFrequency > 1046.50){
-                data.vocalType = "> Sopran"
-            }else if(data.maxFrequency <= 329.63){
-                data.vocalType = "Bass"
-            }else if(data.maxFrequency <= 440.00){
-                data.vocalType = "Baritone"
-            }else if(data.maxFrequency <= 523.25){
-                data.vocalType = "Tenor"
-            }else if(data.maxFrequency <= 659.26){
-                data.vocalType = "Countertenor"
-            }else if(data.maxFrequency <= 698.46){
-                data.vocalType = "Alto"
-            }else if(data.maxFrequency <= 880.00){
-                data.vocalType = "Mezzo-Soprano"
-            }else if(data.maxFrequency <= 1046.50){
-                data.vocalType = "Sopran"
-            }else{
-                data.vocalType = "-"
-            }
-        }else{
-//            print(false)
-        }
-        
-        if(data.questionStatus != .done){
-            data.answerNote = data.noteNameWithSharps
-            
-            
-            data.answerNoteMonitoring.removeFirst()
-            
-            data.answerNoteMonitoring.append(data.answerNote)
-            
-            
-            if(!data.isCorrect){
-                if(data.questionNote == data.answerNote){
-                    data.questionColor = Color("Warning")
+                data.vocalRange = "\(data.minNote)\(data.minOctave) - \(data.maxNote)\(data.maxOctave)"
+                //            print("***")
+                //            print(data.maxNote)
+                //            print(data.maxFrequency)
+                if(data.maxFrequency > 1046.50){
+                    data.vocalType = "> Sopran"
+                }else if(data.maxFrequency <= 329.63){
+                    data.vocalType = "Bass"
+                }else if(data.maxFrequency <= 440.00){
+                    data.vocalType = "Baritone"
+                }else if(data.maxFrequency <= 523.25){
+                    data.vocalType = "Tenor"
+                }else if(data.maxFrequency <= 659.26){
+                    data.vocalType = "Countertenor"
+                }else if(data.maxFrequency <= 698.46){
+                    data.vocalType = "Alto"
+                }else if(data.maxFrequency <= 880.00){
+                    data.vocalType = "Mezzo-Soprano"
+                }else if(data.maxFrequency <= 1046.50){
+                    data.vocalType = "Sopran"
                 }else{
-                    data.questionColor = .white
+                    data.vocalType = "-"
+                }
+            }else{
+                //            print(false)
+            }
+            
+            if(data.questionStatus != .done){
+                data.answerNote = data.noteNameWithSharps
+                
+                
+                data.answerNoteMonitoring.removeFirst()
+                
+                data.answerNoteMonitoring.append(data.answerNote)
+                
+                
+                if(!data.isCorrect){
+                    if(data.questionNote == data.answerNote){
+                        data.questionColor = Color("Warning")
+                    }else{
+                        data.questionColor = .white
+                    }
+                }
+                
+                if(isAllElementsSame(in: data.answerNoteMonitoring) && data.answerNote == data.questionNote){
+                    clock = 0
+                    data.questionType = "Up"
+                    data.questionStatus = .delay
+                    data.questionColor = Color("Success")
+                    data.questionMessage = "Great! in 3 seconds we'll raise the note for you"
+                    data.isCorrect = true
+                    data.renewTime = true
                 }
             }
             
-            if(isAllElementsSame(in: data.answerNoteMonitoring) && data.answerNote == data.questionNote){
-                clock = 0
-                data.questionType = "Up"
-                data.questionStatus = .delay
-                data.questionColor = Color("Success")
-                data.questionMessage = "Great! in 3 seconds we'll raise the note for you"
-                data.isCorrect = true
-                data.renewTime = true
-            }
         }
         
     }

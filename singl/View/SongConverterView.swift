@@ -13,6 +13,8 @@ import MediaPlayer
 
 struct SongConverterView: View {
     
+    @StateObject var taskManager:TaskManager = TaskManager()
+    
     @State var audioPlayer: AVAudioPlayer?
     
     let audioEngine = AVAudioEngine()
@@ -20,11 +22,15 @@ struct SongConverterView: View {
     let audioUnitTimePitch = AVAudioUnitTimePitch()
     
     
+    
     @State private var isNext:Bool = false
     @State private var isBack:Bool = false
     
+    @State var isPitchShifter:Bool = false
+    
     @State var isRemoveVocal: Bool = true
     @State var isProcess:Bool = false
+    @State var isProcessConverter:Bool = false
     @State var isDone:Bool = false
     @State var frequencySelected:Double = 0
     
@@ -42,15 +48,28 @@ struct SongConverterView: View {
     @State private var musicFile:String = ""
     @State private var sourceFile:String = ""
     
+    @State private var vocalName:String = ""
+    @State private var musicName:String = ""
+    @State private var sourceName:String = ""
+    
+    @State private var convertedFile:String = ""
+    
+    
     @State private var vocalFileDownloaded:String = ""
     @State private var musicFileDownloaded:String = ""
     @State private var sourceFileDownloaded:String = ""
+    @State private var convertedFileDownloaded:String = ""
     
     @State private var sign:String = ""
     
     
     @State var isAlert:Bool = false
     @State var isDownload:Bool = false
+    
+    
+    @State private var showAlert = false
+    @State private var alertTitle = ""
+    @State private var alertMessage = ""
     
     func increase(){
         frequencySelected += 1
@@ -69,13 +88,109 @@ struct SongConverterView: View {
         }else{
             sign = ""
         }
+        
+        convert()
+        
+    }
+    
+    func convert(){
+        isProcessConverter = true
+//        isDone = false
+        var selectedName = sourceName
+        if(isRemoveVocal==true){
+            selectedName = musicName
+        }
+        let parameters = "{\n   \"file_name\":\""+selectedName+"\",\n   \"pitch\":"+String(frequencySelected)+"\n}"
+        print(parameters)
+        let postData = parameters.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: taskManager.endpointConverter)!,timeoutInterval: Double.infinity)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        request.httpMethod = "POST"
+        request.httpBody = postData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            let decoder = JSONDecoder()
+            if let data = data{
+                print("Server Response")
+                print(String(data: data, encoding: .utf8)!)
+                do {
+                    let data = try decoder.decode(ResponseModelConverter.self, from: data)
+                    
+//                    print(data.data.pitch)
+//                    print(data.data.file_name)
+//                    print(data.data.output)
+                    
+                    
+                    
+                    convertedFile = data.data.output
+                    isPitchShifter = true
+                    
+                    downloadMP3Converter()
+                    
+                } catch {
+                    print(error)
+                }
+//                isDone = true
+//                isProcess = false
+            }else if let error = error {
+                // Handle the error if there was one during the network request
+                print("Network request error:", error)
+                // Notify the user about the error, e.g., using an alert
+                DispatchQueue.main.async {
+                    showAlert(title: "Error", message: "Failed to make the network request.")
+                }
+            } else {
+                // Handle the case where both data and error are nil (e.g., server not found)
+                print("Unknown error: no data and no error.")
+                // Notify the user about the error, e.g., using an alert
+                DispatchQueue.main.async {
+                    showAlert(title: "Error", message: "Server endpoint not found.")
+                }
+            }
+        }
+        task.resume()
+        
+    }
+    
+    func downloadMP3Converter() {
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        print(convertedFile)
+        let fileURL = documentsDirectory.appendingPathComponent("converted.mp3")
+        let downloadURL = URL(string: convertedFile)! // Replace with your MP3 file URL
+        convertedFileDownloaded = fileURL.path
+        let downloadTask = URLSession.shared.downloadTask(with: downloadURL) { location, response, error in
+            if let location = location {
+                do {
+                    // Replace the existing file if it exists
+                    if fileManager.fileExists(atPath: fileURL.path) {
+                        try fileManager.replaceItemAt(fileURL, withItemAt: location)
+                    } else {
+                        try fileManager.moveItem(at: location, to: fileURL)
+                    }
+                    print("File downloaded successfully.")
+//                    isDone = true
+                      isProcessConverter = false
+                      playAudio()
+                } catch {
+                    print("Error moving/replacing file: \(error.localizedDescription)")
+                }
+            } else {
+                print("Download failed: \(error?.localizedDescription ?? "Unknown error")")
+            }
+        }
+        
+        
+        downloadTask.resume()
     }
     
     func uploadFile(){
         isProcess = true
         
-        print("Location")
-        print(selectedFile?.path)
+//        print("Location")
+//        print(selectedFile?.path)
         guard selectedFile!.startAccessingSecurityScopedResource() else {
             print("Can't access security scoped resource")
             
@@ -90,48 +205,21 @@ struct SongConverterView: View {
             print(error)
         }
         
+     
+        let parameters = "{\n   \"file\":\""+fileEncoded+"\"\n}"
         
-        
-        
-        let parameters = [
-            [
-                "key": "file",
-                "value": fileEncoded,
-                "type": "text"
-            ]] as [[String: Any]]
-        
-        let boundary = "Boundary-\(UUID().uuidString)"
-        var body = ""
-        var _: Error? = nil
-        for param in parameters {
-            if param["disabled"] != nil { continue }
-            let paramName = param["key"]!
-            body += "--\(boundary)\r\n"
-            body += "Content-Disposition:form-data; name=\"\(paramName)\""
-            if param["contentType"] != nil {
-                body += "\r\nContent-Type: \(param["contentType"] as! String)"
-            }
-            let paramType = param["type"] as! String
-            if paramType == "text" {
-                let paramValue = param["value"] as! String
-                body += "\r\n\r\n\(paramValue)\r\n"
-            } else {
-            }
-        }
-        body += "--\(boundary)--\r\n";
-        let postData = body.data(using: .utf8)
-        
-        var request = URLRequest(url: URL(string: "https://dev.nikahnesia.com/api/mc3/v1/voice-remover")!,timeoutInterval: Double.infinity)
-        request.addValue("ci_session=5404e0a62421ee25a9bfc3067af473664e82e23a", forHTTPHeaderField: "Cookie")
-        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        
+        let postData = parameters.data(using: .utf8)
+
+        var request = URLRequest(url: URL(string: taskManager.endpoint)!,timeoutInterval: Double.infinity)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
         request.httpMethod = "POST"
         request.httpBody = postData
-        
-        
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             let decoder = JSONDecoder()
             if let data = data{
+                print("Server Response")
                 print(String(data: data, encoding: .utf8)!)
                 do {
                     let data = try decoder.decode(ResponseModel.self, from: data)
@@ -141,6 +229,9 @@ struct SongConverterView: View {
                     vocalFile = data.data.vocal_file
                     musicFile = data.data.music_file
                     sourceFile = data.data.source_file
+                    vocalName = data.data.vocal_name
+                    musicName = data.data.music_name
+                    sourceName = data.data.source_name
                     
                     if(data.data.music_file != ""){
                         downloadMP3Music()
@@ -153,8 +244,22 @@ struct SongConverterView: View {
                 } catch {
                     print(error)
                 }
-                isDone = true
-                isProcess = false
+//                isDone = true
+//                isProcess = false
+            }else if let error = error {
+                // Handle the error if there was one during the network request
+                print("Network request error:", error)
+                // Notify the user about the error, e.g., using an alert
+                DispatchQueue.main.async {
+                    showAlert(title: "Error", message: "Failed to make the network request.")
+                }
+            } else {
+                // Handle the case where both data and error are nil (e.g., server not found)
+                print("Unknown error: no data and no error.")
+                // Notify the user about the error, e.g., using an alert
+                DispatchQueue.main.async {
+                    showAlert(title: "Error", message: "Server endpoint not found.")
+                }
             }
         }
         
@@ -167,6 +272,13 @@ struct SongConverterView: View {
         
     }
     
+    func showAlert(title: String, message: String) {
+        // Update the alertTitle and alertMessage to show the appropriate content in the alert
+        alertTitle = title
+        alertMessage = message
+        // Set showAlert to true to trigger the presentation of the alert
+        showAlert = true
+    }
     
     func downloadMP3Music() {
         let fileManager = FileManager.default
@@ -231,13 +343,23 @@ struct SongConverterView: View {
     
     func playAudio() {
         
+        
         resetAudio()
         
-        var selectedSource = sourceFileDownloaded
-        if(isRemoveVocal==true){
-            selectedSource = musicFileDownloaded
+        print("Play Audio")
+        var selectedSource = ""
+        
+        if(isPitchShifter){
+            selectedSource = convertedFileDownloaded
+        }else{
+            selectedSource = sourceFileDownloaded
+            if(isRemoveVocal==true){
+                selectedSource = musicFileDownloaded
+            }
         }
+        
         print(selectedSource)
+        
         // 1: load the file
         let url = URL(fileURLWithPath: selectedSource)
         do {
@@ -285,16 +407,24 @@ struct SongConverterView: View {
         isDownload = true
         //        resetAudio()
         
-        var selectedSource = sourceFileDownloaded
-        if(isRemoveVocal==true){
-            selectedSource = musicFileDownloaded
+        print("Download Audio")
+        var selectedSource = ""
+        
+        if(isPitchShifter){
+            selectedSource = convertedFileDownloaded
+        }else{
+            selectedSource = sourceFileDownloaded
+            if(isRemoveVocal==true){
+                selectedSource = musicFileDownloaded
+            }
         }
+        
         print(selectedSource)
         
         let audioURL = URL(fileURLWithPath: selectedSource)
         
         
-        let destinationURL = getDocumentsDirectory().appendingPathComponent("finalmp3.mp3")
+        let destinationURL = getDocumentsDirectory().appendingPathComponent("singl-converted.mp3")
         
         URLSession.shared.downloadTask(with: audioURL) { (tempURL, _, error) in
             if let error = error {
@@ -316,14 +446,15 @@ struct SongConverterView: View {
             do {
                 try FileManager.default.moveItem(at: tempURL, to: destinationURL)
                 
-                applyAudioEffect(to: destinationURL)
+//                applyAudioEffect(to: destinationURL)
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     isDownload = false
-                    shareLink(url: destinationURL)
+                    shareLink(url: audioURL)
+                    print("CONVERTED MP3")
+                    print(destinationURL)
                 }
-                print("FINAL MP3")
-                print(destinationURL)
+                
             } catch {
                 print("Move file error: \(error.localizedDescription)")
             }
@@ -332,6 +463,7 @@ struct SongConverterView: View {
     }
     
     func applyAudioEffect(to audioURL: URL) {
+        
         do {
             let audioFile = try AVAudioFile(forReading: audioURL)
             
@@ -350,7 +482,7 @@ struct SongConverterView: View {
             
             audioPlayerNode.play()
             
-            //                changePitch()
+            
             
         } catch {
             print("Audio effect error: \(error.localizedDescription)")
@@ -411,6 +543,7 @@ struct SongConverterView: View {
                                                 primaryButton: .default(Text("Delete Song").foregroundColor(.red), action: {
                                                     isDone = false
                                                     isProcess = false
+                                                    isProcessConverter = false
                                                     resetAudio()
                                                     
                                                 }),
@@ -479,7 +612,7 @@ struct SongConverterView: View {
                                     increase()
                                 }){
                                     Image(systemName:"triangle.fill").foregroundColor(Color("Yellow")).font(.system(size: 50)).fontWeight(.bold)
-                                }
+                                }.opacity(!isProcessConverter ? 1 : 0.5).disabled(isProcessConverter ? true : false)
                             Text(sign+"\(String(format: "%.0f", frequencySelected))").foregroundColor(Color(.white)).font(.largeTitle).padding(.vertical,5)
                             
                             Button(
@@ -487,7 +620,7 @@ struct SongConverterView: View {
                                     decrease()
                                 }){
                                     Image(systemName:"triangle.fill").foregroundColor(Color("Yellow")).font(.system(size: 50)).fontWeight(.bold).scaleEffect(CGSize(width: 1.0, height: -1.0))
-                                }
+                                }.opacity(!isProcessConverter ? 1 : 0.5).disabled(isProcessConverter ? true : false)
                         }.disabled(isDone ? false : true).padding(.vertical,10).opacity(isDone ? 1 : 0.5)
                         
                         
@@ -498,8 +631,11 @@ struct SongConverterView: View {
                             Toggle("Remove Vocals", isOn: $isRemoveVocal)
                                 .padding().foregroundColor(.white).font(.callout).frame(width:200).onChange(of: isRemoveVocal) { value in
                                     resetAudio()
+                                    convert()
                                 }
-                        }.opacity(isDone ? 1 : 0.5).disabled(isDone ? false : true)
+                        }
+                        .padding(.top,-10)
+                        .opacity(isDone ? 1 : 0.5).disabled(isDone ? false : true)
                     }.padding(.top,20)
                     
                     HStack(spacing:10){
@@ -514,6 +650,7 @@ struct SongConverterView: View {
                         Button(
                             action:{
                                 frequencySelected = 0
+                                signCheck()
                                 changePitch()
                                 resetAudio()
                             }
@@ -543,7 +680,12 @@ struct SongConverterView: View {
                     
                 }.padding(30).padding(.top,30).frame(maxWidth:.infinity, maxHeight:.infinity).background(Color("Blue")).ignoresSafeArea().onAppear{
                     setupAudioEngine()
+                }.onDisappear{
+                    audioEngine.stop()
+                    audioPlayerNode.stop()
                 }
+            }.alert(isPresented: $showAlert) {
+                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
             }
         }
     }

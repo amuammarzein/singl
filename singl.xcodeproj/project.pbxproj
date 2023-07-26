@@ -19,6 +19,7 @@
 		BE647D632A652C9F0013185A /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D622A652C9F0013185A /* SoundpipeAudioKit */; };
 		BE647D662A652CB30013185A /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D652A652CB30013185A /* AudioKitUI */; };
 		BE647D692A652CBE0013185A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D682A652CBE0013185A /* AudioKitEX */; };
+		BE6960902A6FDC4A00E80386 /* PingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69608F2A6FDC4A00E80386 /* PingView.swift */; };
 		BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88B2A66739F00725CCD /* TunerManager.swift */; };
 		BEC5D88E2A6673B500725CCD /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88D2A6673B500725CCD /* SplashView.swift */; };
 		BEC5D8902A6673D400725CCD /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = BEC5D88F2A6673D400725CCD /* Sounds */; };
@@ -54,6 +55,7 @@
 		BE647D522A652C340013185A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE647D542A652C350013185A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE647D572A652C350013185A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BE69608F2A6FDC4A00E80386 /* PingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingView.swift; sourceTree = "<group>"; };
 		BEC5D88B2A66739F00725CCD /* TunerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerManager.swift; sourceTree = "<group>"; };
 		BEC5D88D2A6673B500725CCD /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BEC5D88F2A6673D400725CCD /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				BE1925802A697906000701DD /* ImagePicker.swift */,
 				BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */,
 				BED2D7442A6A7B9400C033DB /* TunerView.swift */,
+				BE69608F2A6FDC4A00E80386 /* PingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				BEC5D8922A6674A000725CCD /* UseHeadphonesViews.swift in Sources */,
 				BEC5D8942A6674A600725CCD /* HomeView.swift in Sources */,
 				BEC5D89C2A667A3100725CCD /* VocalTypeTestView.swift in Sources */,
+				BE6960902A6FDC4A00E80386 /* PingView.swift in Sources */,
 				BE647D512A652C340013185A /* singlApp.swift in Sources */,
 				BEFA55D02A66E70D0034C48A /* ShimmerView.swift in Sources */,
 				BEC5D89A2A6676CC00725CCD /* TaskManager.swift in Sources */,
@@ -450,7 +454,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -489,7 +493,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

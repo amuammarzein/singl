@@ -28,7 +28,7 @@ struct VocalRangesTestView: View {
     
     var body: some View {
         if(taskManager.isBack){
-            DashboardView()
+            UseHeadphonesViews()
         }else if(taskManager.isNext){
             VocalRangesTestResultView()
         }else{

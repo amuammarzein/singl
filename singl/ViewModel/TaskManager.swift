@@ -29,6 +29,12 @@ class TaskManager:ObservableObject{
     @AppStorage("profilePhoto") var profilePhotoData: Data?
     
     
+    @AppStorage("isPiano") var isPiano: Bool = false {
+        didSet {
+            objectWillChange.send()
+        }
+    }
+    
     @AppStorage("isMenu") var isMenu: Bool = true {
         didSet {
             objectWillChange.send()
@@ -39,8 +45,10 @@ class TaskManager:ObservableObject{
             objectWillChange.send()
         }
     }
-
-    @Published var isPiano:Bool = false
+    
+    
+    @Published var endpoint = "http://10.63.48.105:5001/upload"
+    @Published var endpointConverter = "http://10.63.48.105:5001/pitcher"
     @Published var isShare:Bool = false
     @Published var isActive:Bool = false
     @Published var isDashboard:Bool = false

@@ -53,8 +53,7 @@ struct TunerData {
     var noteName: String = "-"
     var noteOctave: Int = 1
     var renewTime: Bool = false
-    var answerNoteMonitoring:[String] = ["-","-","-","-","-","-","-","-","-","-",
-                                         "-","-","-","-","-",]
+    var answerNoteMonitoring:[String] = ["-","-","-","-","-","-","-","-","-","-",]
 }
 
 struct NoteData {
