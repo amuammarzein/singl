@@ -101,7 +101,7 @@ struct SongConverterView: View {
     
     func convert(){
         isProcessConverter = true
-//        isDone = false
+        //        isDone = false
         var selectedName = sourceName
         if(isRemoveVocal==true){
             selectedName = musicName
@@ -109,13 +109,13 @@ struct SongConverterView: View {
         let parameters = "{\n   \"file_name\":\""+selectedName+"\",\n   \"pitch\":"+String(frequencySelected)+"\n}"
         print(parameters)
         let postData = parameters.data(using: .utf8)
-
+        
         var request = URLRequest(url: URL(string: taskManager.endpointConverter)!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         request.httpMethod = "POST"
         request.httpBody = postData
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             let decoder = JSONDecoder()
             if let data = data{
@@ -124,9 +124,9 @@ struct SongConverterView: View {
                 do {
                     let data = try decoder.decode(ResponseModelConverter.self, from: data)
                     
-//                    print(data.data.pitch)
-//                    print(data.data.file_name)
-//                    print(data.data.output)
+                    //                    print(data.data.pitch)
+                    //                    print(data.data.file_name)
+                    //                    print(data.data.output)
                     
                     
                     
@@ -138,8 +138,8 @@ struct SongConverterView: View {
                 } catch {
                     print(error)
                 }
-//                isDone = true
-//                isProcess = false
+                //                isDone = true
+                //                isProcess = false
             }else if let error = error {
                 // Handle the error if there was one during the network request
                 print("Network request error:", error)
@@ -147,6 +147,7 @@ struct SongConverterView: View {
                 DispatchQueue.main.async {
                     showAlert(title: "Error", message: "Failed to make the network request.")
                 }
+                isProcessConverter = false
             } else {
                 // Handle the case where both data and error are nil (e.g., server not found)
                 print("Unknown error: no data and no error.")
@@ -154,6 +155,7 @@ struct SongConverterView: View {
                 DispatchQueue.main.async {
                     showAlert(title: "Error", message: "Server endpoint not found.")
                 }
+                isProcessConverter = false
             }
         }
         task.resume()
@@ -177,14 +179,16 @@ struct SongConverterView: View {
                         try fileManager.moveItem(at: location, to: fileURL)
                     }
                     print("File downloaded successfully.")
-//                    isDone = true
-                      isProcessConverter = false
-                      playAudio()
+                    //                    isDone = true
+                    isProcessConverter = false
+                    playAudio()
                 } catch {
                     print("Error moving/replacing file: \(error.localizedDescription)")
+                    isProcessConverter = false
                 }
             } else {
                 print("Download failed: \(error?.localizedDescription ?? "Unknown error")")
+                isProcessConverter = false
             }
         }
         
@@ -195,8 +199,8 @@ struct SongConverterView: View {
     func uploadFile(){
         isProcess = true
         
-//        print("Location")
-//        print(selectedFile?.path)
+        //        print("Location")
+        //        print(selectedFile?.path)
         guard selectedFile!.startAccessingSecurityScopedResource() else {
             print("Can't access security scoped resource")
             
@@ -211,17 +215,17 @@ struct SongConverterView: View {
             print(error)
         }
         
-     
+        
         let parameters = "{\n   \"file\":\""+fileEncoded+"\"\n}"
         
         let postData = parameters.data(using: .utf8)
-
+        
         var request = URLRequest(url: URL(string: taskManager.endpoint)!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         request.httpMethod = "POST"
         request.httpBody = postData
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             let decoder = JSONDecoder()
             if let data = data{
@@ -250,8 +254,8 @@ struct SongConverterView: View {
                 } catch {
                     print(error)
                 }
-//                isDone = true
-//                isProcess = false
+                //                isDone = true
+                //                isProcess = false
             }else if let error = error {
                 // Handle the error if there was one during the network request
                 print("Network request error:", error)
@@ -259,6 +263,7 @@ struct SongConverterView: View {
                 DispatchQueue.main.async {
                     showAlert(title: "Error", message: "Failed to make the network request.")
                 }
+                isProcess = false
             } else {
                 // Handle the case where both data and error are nil (e.g., server not found)
                 print("Unknown error: no data and no error.")
@@ -266,6 +271,7 @@ struct SongConverterView: View {
                 DispatchQueue.main.async {
                     showAlert(title: "Error", message: "Server endpoint not found.")
                 }
+                isProcess = false
             }
         }
         
@@ -306,9 +312,11 @@ struct SongConverterView: View {
                     downloadMP3Source()
                 } catch {
                     print("Error moving/replacing file: \(error.localizedDescription)")
+                    isProcess = false
                 }
             } else {
                 print("Download failed: \(error?.localizedDescription ?? "Unknown error")")
+                isProcess = false
             }
         }
         
@@ -337,9 +345,11 @@ struct SongConverterView: View {
                     print("File downloaded successfully.")
                 } catch {
                     print("Error moving/replacing file: \(error.localizedDescription)")
+                    isProcess = false
                 }
             } else {
                 print("Download failed: \(error?.localizedDescription ?? "Unknown error")")
+                isProcess = false
             }
         }
         
@@ -452,7 +462,7 @@ struct SongConverterView: View {
             do {
                 try FileManager.default.moveItem(at: tempURL, to: destinationURL)
                 
-//                applyAudioEffect(to: destinationURL)
+                //                applyAudioEffect(to: destinationURL)
                 
                 resetAudio()
                 
@@ -509,7 +519,7 @@ struct SongConverterView: View {
     }
     
     
-   
+    
     
     var body: some View {
         if(isBack){
@@ -578,7 +588,9 @@ struct SongConverterView: View {
                                     
                                     
                                 }.padding(20)
-                            }.frame(maxWidth:.infinity).background( .white).cornerRadius(30).padding(.horizontal,30) .fileImporter(isPresented: $isShowingFilePicker, allowedContentTypes: [.audio], allowsMultipleSelection: false, onCompletion: { result in
+                            }.frame(maxWidth:.infinity).background( .white).cornerRadius(30).padding(.horizontal,30).alert(isPresented: $showAlert) {
+                                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                            } .fileImporter(isPresented: $isShowingFilePicker, allowedContentTypes: [.audio], allowsMultipleSelection: false, onCompletion: { result in
                                 switch result {
                                 case .success(let urls):
                                     if let unwrappedURL: URL = urls.first {
@@ -626,7 +638,7 @@ struct SongConverterView: View {
                                 ProgressView().progressViewStyle(CircularProgressViewStyle(tint: .white)).font(.largeTitle).frame(height:50)
                             }else{
                                 Text(sign+"\(String(format: "%.0f", frequencySelected))").foregroundColor(Color(.white)).font(.largeTitle).padding(.vertical,0).frame(height:50)
-
+                                
                             }
                             
                             
@@ -699,9 +711,6 @@ struct SongConverterView: View {
                     audioPlayerNode.stop()
                 }
             }
-//            .alert(isPresented: $showAlert) {
-//                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-//            }
         }
     }
 }
