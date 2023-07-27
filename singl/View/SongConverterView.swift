@@ -110,7 +110,9 @@ struct SongConverterView: View {
         print(parameters)
         let postData = parameters.data(using: .utf8)
         
-        var request = URLRequest(url: URL(string: taskManager.endpointConverter)!,timeoutInterval: Double.infinity)
+        print(taskManager.converterURL+""+taskManager.endpointConverter)
+        
+        var request = URLRequest(url: URL(string: taskManager.converterURL+""+taskManager.endpointConverter)!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpMethod = "POST"
@@ -220,7 +222,9 @@ struct SongConverterView: View {
         
         let postData = parameters.data(using: .utf8)
         
-        var request = URLRequest(url: URL(string: taskManager.endpoint)!,timeoutInterval: Double.infinity)
+        print(taskManager.converterURL+""+taskManager.endpoint)
+        
+        var request = URLRequest(url: URL(string: taskManager.converterURL+""+taskManager.endpoint)!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         request.httpMethod = "POST"

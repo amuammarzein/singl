@@ -46,8 +46,9 @@ class TaskManager:ObservableObject{
         }
     }
     
-    @Published var endpoint = "http://10.63.48.105:5001/upload"
-    @Published var endpointConverter = "http://10.63.48.105:5001/pitcher"
+    @AppStorage("converterURL") var converterURL: String = "http://10.63.48.105:5001"
+    @Published var endpoint = "/upload"
+    @Published var endpointConverter = "/pitcher"
     @Published var isShare:Bool = false
     @Published var isActive:Bool = false
     @Published var isDashboard:Bool = false

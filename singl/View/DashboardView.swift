@@ -10,23 +10,23 @@ import SwiftUI
 struct DashboardView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var musicManager:MusicManager = MusicManager()
-   
+    
     @State private var isImagePickerPresented = false
-        @State private var selectedImage: UIImage?
+    @State private var selectedImage: UIImage?
     @AppStorage("profilePhoto") var profilePhotoData: Data?
     
     
-     @State private var isTrue = true
-     @State private var isFalse = false
+    @State private var isTrue = true
+    @State private var isFalse = false
     
-//    @EnvironmentObject var router: Router
+    //    @EnvironmentObject var router: Router
     
     func saveProfilePhoto() {
-            if let selectedImage = selectedImage,
-               let profilePhotoData = selectedImage.jpegData(compressionQuality: 0.8) {
-                self.profilePhotoData = profilePhotoData
-            }
+        if let selectedImage = selectedImage,
+           let profilePhotoData = selectedImage.jpegData(compressionQuality: 0.8) {
+            self.profilePhotoData = profilePhotoData
         }
+    }
     
     var body: some View {
         VStack(){
@@ -57,19 +57,19 @@ struct DashboardView: View {
                                                 taskManager.isEditTrue()
                                             }
                                         ){
-                                        if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
-                                                        Image(uiImage: profilePhoto)
-                                                            .resizable()
-                                                            .aspectRatio(contentMode: .fill)
-                                                            .frame(width: 40, height: 40)
-                                                            .clipShape(Circle())
-                                                    } else {
-                                                        Circle().foregroundColor(Color("Orange"))
-                                                            .frame(width: 40, height: 40)
-                                                            .clipShape(Circle())
-                                                    }
-                                        Text(taskManager.fullName).font(.body).foregroundColor(.white)
-                                        
+                                            if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
+                                                Image(uiImage: profilePhoto)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 40, height: 40)
+                                                    .clipShape(Circle())
+                                            } else {
+                                                Circle().foregroundColor(Color("Orange"))
+                                                    .frame(width: 40, height: 40)
+                                                    .clipShape(Circle())
+                                            }
+                                            Text(taskManager.fullName).font(.body).foregroundColor(.white)
+                                            
                                             Image(systemName:"pencil").font(.body).foregroundColor(.white)
                                         }
                                         Spacer()
@@ -83,7 +83,7 @@ struct DashboardView: View {
                                                             taskManager.isEditFalse()
                                                         }){
                                                             Text("Cancel").font(.body).foregroundColor(.red)
-                                                    }
+                                                        }
                                                     Spacer()
                                                     Text("Edit Profile").font(.body).bold()
                                                     Spacer()
@@ -96,8 +96,8 @@ struct DashboardView: View {
                                                                 
                                                                 taskManager.isEditFalse()
                                                             }){
-                                                            Text("Done").font(.body)
-                                                        }
+                                                                Text("Done").font(.body)
+                                                            }
                                                     }
                                                     
                                                 }.padding(.horizontal,20)
@@ -106,18 +106,18 @@ struct DashboardView: View {
                                                 
                                                 VStack(){
                                                     VStack(alignment:.center){
-                                                   
+                                                        
                                                         if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
-                                                                        Image(uiImage: profilePhoto)
-                                                                            .resizable()
-                                                                            .aspectRatio(contentMode: .fill)
-                                                                            .frame(width: 100, height: 100)
-                                                                            .clipShape(Circle())
-                                                                    } else {
-                                                                        Circle().foregroundColor(Color("Orange"))
-                                                                            .frame(width: 100, height: 100)
-                                                                            .clipShape(Circle())
-                                                                    }
+                                                            Image(uiImage: profilePhoto)
+                                                                .resizable()
+                                                                .aspectRatio(contentMode: .fill)
+                                                                .frame(width: 100, height: 100)
+                                                                .clipShape(Circle())
+                                                        } else {
+                                                            Circle().foregroundColor(Color("Orange"))
+                                                                .frame(width: 100, height: 100)
+                                                                .clipShape(Circle())
+                                                        }
                                                         
                                                         
                                                         Button(
@@ -130,7 +130,7 @@ struct DashboardView: View {
                                                     }.padding(.bottom,20).sheet(isPresented: $isImagePickerPresented, onDismiss: saveProfilePhoto) {
                                                         ImagePicker(selectedImage: $selectedImage)
                                                     }
-                                                  
+                                                    
                                                     
                                                     
                                                     HStack(){
@@ -142,9 +142,23 @@ struct DashboardView: View {
                                                             RoundedRectangle(cornerRadius: 10)
                                                                 .stroke(.black, lineWidth: 1.5)
                                                         ).foregroundColor(.black).accentColor(.black)
+                                                  
+                                                    Spacer()
+
+                                                    
+                                                    HStack(){
+                                                        Text("Converter URL").foregroundColor(.black).font(.body)
+                                                        Spacer()
+                                                    }.padding(.bottom,3)
+                                                    TextField("", text: $taskManager.converterURL).font(.body).padding()
+                                                        .background(
+                                                            RoundedRectangle(cornerRadius: 10)
+                                                                .stroke(.black, lineWidth: 1.5)
+                                                        ).foregroundColor(.black).accentColor(.black)
                                                     
                                                 }.padding(.horizontal,20)
-                                                Spacer()
+                                                
+                                                
                                                 
                                             }.padding(.vertical,20).frame(maxHeight:.infinity).background(.white).presentationDetents(
                                                 [.large, .large]
@@ -157,7 +171,7 @@ struct DashboardView: View {
                                     }.padding(.top,10)
                                     Button(
                                         action:{
-                                                taskManager.isMenuFalse()
+                                            taskManager.isMenuFalse()
                                             taskManager.isDashboardFalse()
                                         }
                                     ){
@@ -275,20 +289,20 @@ struct DashboardView: View {
                                                             musicManager.openAppleMusicSingerV2(artist: item)
                                                         }
                                                     ){
-                                                    VStack(){
-                                                        
-                                                        AsyncImage(url: item.imgSinger) { image in
-                                                            image
-                                                                .resizable()
-                                                                .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
-                                                        } placeholder: {
-                                                            ShimmerView().frame(width:100,height:100).cornerRadius(15)
-                                                        }
-                                                        
-                                                        VStack(alignment:.leading){
-                                                            Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
-                                                        }
-                                                    }.foregroundColor(.black)
+                                                        VStack(){
+                                                            
+                                                            AsyncImage(url: item.imgSinger) { image in
+                                                                image
+                                                                    .resizable()
+                                                                    .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
+                                                            } placeholder: {
+                                                                ShimmerView().frame(width:100,height:100).cornerRadius(15)
+                                                            }
+                                                            
+                                                            VStack(alignment:.leading){
+                                                                Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            }
+                                                        }.foregroundColor(.black)
                                                     }.frame(width:100)
                                                 }
                                             }
@@ -316,17 +330,17 @@ struct DashboardView: View {
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()
                     
-//                    print("***")
-//                    print(router.path)
-//                    print(router.path.count)
+                    //                    print("***")
+                    //                    print(router.path)
+                    //                    print(router.path.count)
                     //                    musicManager.getSong(limit:5)
                     //                    musicManager.getSinger(limit:5)
                 }
             }
         }.onAppear{
             taskManager.isDashboardTrue()
-//            taskManager.vocalType = "Bass"
-//            taskManager.vocalRange = "E2 - E4"
+            //            taskManager.vocalType = "Bass"
+            //            taskManager.vocalRange = "E2 - E4"
         }
     }
     
