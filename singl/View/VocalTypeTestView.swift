@@ -86,7 +86,11 @@ struct VocalTypeTestView: View {
                
                 if(taskManager.isTimer){
                     VStack(){
-                        Text(String(taskManager.timeRemaining)).foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
+                        if(taskManager.timeRemaining > 0){
+                            Text(String(taskManager.timeRemaining)).foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
+                        }else{
+                            Text("Waiting...").foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
+                        }
                         ZStack(){
                             Circle().frame(width:CGFloat(80+(40 * tunerManager.data.inputLevel))).foregroundColor(.white.opacity(0.3))
                             VStack(){

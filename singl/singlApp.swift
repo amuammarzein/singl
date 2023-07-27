@@ -5,12 +5,29 @@
 //  Created by Aang Muammar Zein on 17/07/23.
 //
 
+import AudioKit
+import AudioKitEX
+import AudioKitUI
+import AVFoundation
 import SwiftUI
 
 @main
 struct TrialNavigationStackApp: App {
     @StateObject var router = Router()
     
+    init() {
+        #if os(iOS)
+            do {
+                Settings.bufferLength = .short
+                try AVAudioSession.sharedInstance().setPreferredIOBufferDuration(Settings.bufferLength.duration)
+                try AVAudioSession.sharedInstance().setCategory(.playAndRecord,
+                                                                options: [.defaultToSpeaker, .mixWithOthers, .allowBluetoothA2DP])
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch let err {
+                print(err)
+            }
+        #endif
+    }
     
     var body: some Scene {
         WindowGroup {
