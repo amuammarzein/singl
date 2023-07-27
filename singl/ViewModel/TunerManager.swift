@@ -216,7 +216,7 @@ class TunerManager: ObservableObject, HasAudioEngine {
             data.answerNote = ""
             
             var inputLvl:Float = 0
-            if(amp > 0.1){
+            if(amp > 0.3){
                 inputLvl = amp + 0.6
                 if(inputLvl >= 1){
                     inputLvl = 1

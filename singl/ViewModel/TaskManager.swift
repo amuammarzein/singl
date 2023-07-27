@@ -15,8 +15,8 @@ class TaskManager:ObservableObject{
     @AppStorage("isTest") var isTest: Bool = false
     @AppStorage("fullName") var fullName: String = "Singing Enthusiast"
     @AppStorage("imageURL") var imageURL: String = ""
-    @AppStorage("vocalType") var vocalType: String = ""
-    @AppStorage("vocalRange") var vocalRange: String = ""
+    @AppStorage("vocalType") var vocalType: String = "-"
+    @AppStorage("vocalRange") var vocalRange: String = "-"
     @AppStorage("vocalMinNote") var vocalMinNote: String = "C"
     @AppStorage("vocalMaxNote") var vocalMaxNote: String = "C"
     @AppStorage("vocalMinOctave") var vocalMinOctave: Int = 1
@@ -46,8 +46,8 @@ class TaskManager:ObservableObject{
         }
     }
     
-    @Published var endpoint = "http://192.168.0.105:5001/upload"
-    @Published var endpointConverter = "http://192.168.0.105:5001/pitcher"
+    @Published var endpoint = "http://10.63.48.105:5001/upload"
+    @Published var endpointConverter = "http://10.63.48.105:5001/pitcher"
     @Published var isShare:Bool = false
     @Published var isActive:Bool = false
     @Published var isDashboard:Bool = false

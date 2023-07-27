@@ -359,35 +359,37 @@ struct SongConverterView: View {
     
     func playAudio() {
         
-        
-        resetAudio()
-        
-        print("Play Audio")
-        var selectedSource = ""
-        
-        if(isPitchShifter){
-            selectedSource = convertedFileDownloaded
-        }else{
-            selectedSource = sourceFileDownloaded
-            if(isRemoveVocal==true){
-                selectedSource = musicFileDownloaded
+        if(!isProcess && !isProcessConverter){
+            resetAudio()
+            
+            print("Play Audio")
+            var selectedSource = ""
+            
+            if(isPitchShifter){
+                selectedSource = convertedFileDownloaded
+            }else{
+                selectedSource = sourceFileDownloaded
+                if(isRemoveVocal==true){
+                    selectedSource = musicFileDownloaded
+                }
+            }
+            
+            print(selectedSource)
+            
+            // 1: load the file
+            let url = URL(fileURLWithPath: selectedSource)
+            do {
+                let audioFile = try AVAudioFile(forReading: url)
+                
+                // Schedule the audio file for playback
+                audioPlayerNode.scheduleFile(audioFile, at: nil)
+                // Start the player node
+                audioPlayerNode.play()
+            } catch {
+                print("Error playing audio file: \(error.localizedDescription)")
             }
         }
         
-        print(selectedSource)
-        
-        // 1: load the file
-        let url = URL(fileURLWithPath: selectedSource)
-        do {
-            let audioFile = try AVAudioFile(forReading: url)
-            
-            // Schedule the audio file for playback
-            audioPlayerNode.scheduleFile(audioFile, at: nil)
-            // Start the player node
-            audioPlayerNode.play()
-        } catch {
-            print("Error playing audio file: \(error.localizedDescription)")
-        }
     }
     
     
@@ -672,7 +674,7 @@ struct SongConverterView: View {
                             }
                         ){
                             Text("Play").font(.callout).foregroundColor(.white).underline()
-                        }.opacity(isDone ? 1 : 1).disabled(isDone ? false : true)
+                        }.opacity(isDone ? 1 : 0.5).disabled(isDone ? false : true)
                         
                         Button(
                             action:{
@@ -682,7 +684,7 @@ struct SongConverterView: View {
                             }
                         ){
                             Text("Reset").font(.callout).foregroundColor(.white).underline()
-                        }.opacity(isDone ? 1 : 1).disabled(isDone ? false : true)
+                        }.opacity(isDone ? 1 : 0.5).disabled(isDone ? false : true)
                     }.padding(.bottom,25)
                     
                     if(isDownload){
