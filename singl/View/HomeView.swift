@@ -23,7 +23,7 @@ struct HomeView: View {
                 }else if(item.title == "Vocal Test"){
                     VStack(){
                         if(selectedTab == .menu2){
-                            GetStartedView()
+                            UseHeadphonesViews()
                         }
                     }.tabBarItem(tab: item, selection: $selectedTab)
                 }else if(item.title == "Sing & Song"){

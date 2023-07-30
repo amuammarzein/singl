@@ -98,6 +98,7 @@ struct VocalTypeTestView: View {
                 
                 
             }.padding(.horizontal,30).padding(.bottom,130).frame(maxWidth:.infinity, maxHeight:.infinity).background(Color("Blue")).onAppear{
+                taskManager.isMenuFalse()
                 
             }
             .onDisappear {

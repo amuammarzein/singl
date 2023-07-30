@@ -18,6 +18,7 @@ struct UseHeadphonesViews: View {
         }else if(taskManager.isDashboard){
             HomeView()
         }else{
+            
             VStack(){
                 HStack(spacing:0){
                     Spacer()
@@ -44,7 +45,10 @@ struct UseHeadphonesViews: View {
                     }
                 }.padding(.bottom,40)
                 Spacer()
-            }.padding(.horizontal,30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue")).onAppear {
+            }.padding(.horizontal,30).frame(maxWidth:.infinity,maxHeight:.infinity).background(Color("Blue"))
+                
+                .onAppear {
+                taskManager.isMenuTrue()
                 audioManager.playAudio()
             }.onDisappear{
                 audioManager.stopAudio()
@@ -52,6 +56,7 @@ struct UseHeadphonesViews: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                     withAnimation {
                         taskManager.isActiveTrue()
+                        
                     }
                 }
             }
