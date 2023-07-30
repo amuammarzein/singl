@@ -36,6 +36,7 @@
 		BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */; };
 		BED2D7432A6A7B2500C033DB /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = BED2D7422A6A7B2500C033DB /* Keyboard */; };
 		BED2D7472A6A7D8800C033DB /* PianoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED2D7462A6A7D8800C033DB /* PianoManager.swift */; };
+		BED62D8F2A76939700527261 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BED62D8E2A76939700527261 /* ContentView.swift */; };
 		BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CB2A66D86A0034C48A /* MusicManager.swift */; };
 		BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CD2A66DAB90034C48A /* MusicModel.swift */; };
 		BEFA55D02A66E70D0034C48A /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */; };
@@ -70,6 +71,7 @@
 		BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		BED2D73E2A6A7A6F00C033DB /* singl.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = singl.entitlements; sourceTree = "<group>"; };
 		BED2D7462A6A7D8800C033DB /* PianoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PianoManager.swift; sourceTree = "<group>"; };
+		BED62D8E2A76939700527261 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BEFA55CB2A66D86A0034C48A /* MusicManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicManager.swift; sourceTree = "<group>"; };
 		BEFA55CD2A66DAB90034C48A /* MusicModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicModel.swift; sourceTree = "<group>"; };
 		BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				BEC5D8A32A668A1A00725CCD /* DashboardView.swift */,
 				BE1925802A697906000701DD /* ImagePicker.swift */,
 				BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */,
+				BED62D8E2A76939700527261 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				BEC5D8A02A667D5B00725CCD /* VocalRangesTestView.swift in Sources */,
 				BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */,
 				BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */,
+				BED62D8F2A76939700527261 /* ContentView.swift in Sources */,
 				BE19257F2A696CBD000701DD /* VocalTypeTestResultView.swift in Sources */,
 				BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */,
 				BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */,

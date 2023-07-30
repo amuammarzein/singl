@@ -17,11 +17,7 @@ struct VocalRangesTestView: View {
     @State var screenHeight = UIScreen.main.bounds.height
     @State var barHeight: Float = 0
     
-    @State var isVoicing = false
-    var animation: Animation {
-        return .easeInOut
-    }
-    
+
     func setup(){
         barHeight = Float(screenHeight) / Float(tunerManager.data.arrNote.count) / 4.5
     }
@@ -142,31 +138,26 @@ struct VocalRangesTestView: View {
                                         ZStack(){
                                             VStack(spacing:0){
                                                 HStack(){
-                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:40,height:CGFloat(barHeight))
+                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:40,height:CGFloat(barHeight)).shadow(color: Color("Orange").opacity(0.5), radius: CGFloat(barHeight), x: 0, y: 0)
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
                                                 HStack(){
-                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:50,height:CGFloat(barHeight))
+                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:50,height:CGFloat(barHeight)).shadow(color: Color("Orange").opacity(0.5), radius: CGFloat(barHeight), x: 0, y: 0)
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
                                                 HStack(){
-                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:60,height:CGFloat(barHeight))
+                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:60,height:CGFloat(barHeight)).shadow(color: Color("Orange").opacity(0.5), radius: CGFloat(barHeight), x: 0, y: 0)
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
                                                 HStack(){
-                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:50,height:CGFloat(barHeight))
+                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:50,height:CGFloat(barHeight)).shadow(color: Color("Orange").opacity(0.5), radius: CGFloat(barHeight), x: 0, y: 0)
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
                                                 HStack(){
-                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:40,height:CGFloat(barHeight))
+                                                    Rectangle().foregroundColor(Color("Orange")).frame(width:40,height:CGFloat(barHeight)).shadow(color: Color("Orange").opacity(0.5), radius: CGFloat(barHeight), x: 0, y: 0)
                                                     Spacer()
                                                 }.frame(width:70).opacity(1).padding(.bottom,CGFloat(barHeight))
-                                            }.animation(animation.speed(1), value: isVoicing)
-                                        }.onAppear{
-                                            isVoicing.toggle()
-                                        }
-                                        .onDisappear{
-                                            isVoicing.toggle()
+                                            }
                                         }
                                     }
                                     

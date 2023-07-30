@@ -247,9 +247,12 @@ struct DashboardView: View {
                                                                 ShimmerView().frame(width:100,height:100).cornerRadius(15)
                                                             }
                                                             
-                                                            VStack(alignment:.leading){
-                                                                Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
-                                                                Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            HStack(){
+                                                                VStack(alignment:.leading){
+                                                                    Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
+                                                                    Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                                }
+                                                                Spacer()
                                                             }
                                                         }
                                                     }.foregroundColor(.black)
@@ -299,8 +302,9 @@ struct DashboardView: View {
                                                                 ShimmerView().frame(width:100,height:100).cornerRadius(15)
                                                             }
                                                             
-                                                            VStack(alignment:.leading){
-                                                                Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                            VStack(alignment:.center){
+                                                                    Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
+                                                                 
                                                             }
                                                         }.foregroundColor(.black)
                                                     }.frame(width:100)

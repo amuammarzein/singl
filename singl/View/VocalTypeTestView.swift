@@ -12,7 +12,6 @@ struct VocalTypeTestView: View {
     @StateObject var taskManager:TaskManager = TaskManager()
     @StateObject var tunerManager:TunerManager = TunerManager()
     
-    @State var isVoicing = false
     var animation: Animation {
         return .easeInOut
     }
@@ -47,38 +46,29 @@ struct VocalTypeTestView: View {
                 }
                 Spacer()
                 
-                if(tunerManager.data.inputLevel > 0.2){
-                    HStack(spacing:12){
-                        Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-75) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-50) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-25) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-25) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-50) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                               Rectangle().foregroundColor(.white).frame(width:12,height: isVoicing ? CGFloat(50+(80 * tunerManager.data.inputLevel)-75) : 20).cornerRadius(20).animation(animation.speed(1), value: isVoicing)
-                                           }
-                                           .onAppear{
-                                               isVoicing.toggle()
-                                           }
-                                           .onDisappear{
-                                               isVoicing.toggle()
-                                           }.frame(maxHeight:130)
-                }else{
-                    HStack(spacing:12){
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                        Rectangle().foregroundColor(.white).frame(width:12,height:20).cornerRadius(20)
-                    } .onAppear{
-                        isVoicing.toggle()
+                VStack(){
+                    if(taskManager.isTimer){
+                        HStack(spacing: 12) {
+                                        ForEach(0..<7, id: \.self) { i in
+                                            Rectangle()
+                                                .foregroundColor(.white)
+                                                .frame(width: 12, height: CGFloat(tunerManager.data.voiceInputMonitoring[i]))
+                                                .cornerRadius(20).animation(animation.speed(0.1), value: taskManager.isAnimated)
+                                                .cornerRadius(20)
+                                        }
+                                    }
+                    }else{
+                        HStack(spacing: 12) {
+                                        ForEach(0..<7, id: \.self) { _ in
+                                            Rectangle()
+                                                .foregroundColor(.white)
+                                                .frame(width: 12, height: 20)
+                                                .cornerRadius(20)
+                                        }
+                                    }
+                                 
                     }
-                    .onDisappear{
-                        isVoicing.toggle()
-                    }.frame(maxHeight:130)
-                }
+                }.frame(height: 130)
                 
                 Spacer()
                 
@@ -92,7 +82,7 @@ struct VocalTypeTestView: View {
                             Text("Waiting...").foregroundColor(.white).font(.title3).padding(.bottom,3).padding(.top,0)
                         }
                         ZStack(){
-                            Circle().frame(width:CGFloat(80+(40 * tunerManager.data.inputLevel))).foregroundColor(.white.opacity(0.3))
+                            Circle().frame(width:CGFloat(tunerManager.data.voiceInputMonitoring[3])).foregroundColor(.white.opacity(0.3))
                             VStack(){
                                 ZStack(){
                                     Circle().frame(width:80).foregroundColor(.white)

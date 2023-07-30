@@ -209,21 +209,33 @@ class TunerManager: ObservableObject, HasAudioEngine {
     
     func update(_ pitch: AUValue, _ amp: AUValue) {
         
-        print("Piano Status")
-        print(taskManager.isPiano)
+//        print("Piano Status")
+//        print(taskManager.isPiano)
         
         if(!taskManager.isPiano){
             data.answerNote = ""
             
             var inputLvl:Float = 0
-            if(amp > 0.3){
+            if(amp > 0.20){
                 inputLvl = amp + 0.6
                 if(inputLvl >= 1){
                     inputLvl = 1
                 }
+                data.inputLevel = inputLvl
+                let inputLevelFloat = inputLvl * 130
+                data.voiceInputMonitoring[0] = inputLevelFloat-75
+                data.voiceInputMonitoring[1] = inputLevelFloat-50
+                data.voiceInputMonitoring[2] = inputLevelFloat-25
+                data.voiceInputMonitoring[3] = inputLevelFloat
+                data.voiceInputMonitoring[4] = inputLevelFloat-25
+                data.voiceInputMonitoring[5] = inputLevelFloat-50
+                data.voiceInputMonitoring[6] = inputLevelFloat-75
+            }else{
+                for i in 0...6{
+                    data.voiceInputMonitoring[i] = 20
+                }
             }
-            data.inputLevel = inputLvl
-            
+             
             
             clock += 1
             
@@ -357,7 +369,7 @@ class TunerManager: ObservableObject, HasAudioEngine {
             }
             
             // Reduces sensitivity to background noise to prevent random / fluctuating data.
-            guard amp > 0.1 else { return }
+            guard amp > 0.20 else { return }
             
             data.pitch = pitch
             data.amplitude = amp

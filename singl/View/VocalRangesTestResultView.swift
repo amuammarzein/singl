@@ -39,19 +39,21 @@ struct VocalRangesTestResultView: View {
                             Text("Back").font(.body).foregroundColor(.white).fontWeight(.bold)
                         }
                     Spacer()
-                    Button(
-                        action:{
-                            self.items.removeAll()
-                            
-                            guard let resultImage = ImageRenderer(content: shareView).uiImage else {
-                                return
+                    if(!taskManager.isTest){
+                        Button(
+                            action:{
+                                self.items.removeAll()
+                                
+                                guard let resultImage = ImageRenderer(content: shareView).uiImage else {
+                                    return
+                                }
+                                self.items.append(resultImage)
+                                
+                                taskManager.isShareTrue()
                             }
-                            self.items.append(resultImage)
-                            
-                            taskManager.isShareTrue()
+                        ){
+                            Image(systemName:"square.and.arrow.up").font(.title3).foregroundColor(.white)
                         }
-                    ){
-                        Image(systemName:"square.and.arrow.up").font(.title3).foregroundColor(.white)
                     }
                 }.padding(.top,10).padding(.horizontal,30)
                 ScrollView(){
@@ -121,37 +123,49 @@ struct VocalRangesTestResultView: View {
                 if(musicManager.arrSongsV2.count > 0){
                     HStack(){
                         ZStack(){
-                            Rectangle().foregroundColor(Color("Navy")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            Rectangle().foregroundColor(Color("Navy")).frame(width: taskManager.isAnimated ? .infinity : 0).cornerRadius(50).offset(x:+20)
                             HStack(){
                                 Spacer()
                                 Text(musicManager.arrSongsV2[0].singer).foregroundColor(.white).bold().padding(.trailing,0)
                             }
-                        }.frame(width:CGFloat(screenWidth/2),height:40).background(Color("Navy"))
+                        }.frame(width: taskManager.isAnimated ? CGFloat(screenWidth/2) : 0,height:40).background(Color("Navy"))
                         Spacer()
+                    }.onAppear{
+                        withAnimation(.spring()){
+                            taskManager.isAnimated = true
+                        }
                     }
                 }
                 if(musicManager.arrSongsV2.count > 1){
                     HStack(){
                         ZStack(){
-                            Rectangle().foregroundColor(Color("Blue")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            Rectangle().foregroundColor(Color("Blue")).frame(width: taskManager.isAnimated ? .infinity : 0).cornerRadius(50).offset(x:+20)
                             HStack(){
                                 Spacer()
                                 Text(musicManager.arrSongsV2[1].singer).foregroundColor(.white).bold().padding(.trailing,0)
                             }
-                        }.frame(width:CGFloat(screenWidth/2.3),height:40).background(Color("Blue"))
+                        }.frame(width:taskManager.isAnimated ? CGFloat(screenWidth/2.3) : 0,height:40).background(Color("Blue"))
                         Spacer()
+                    }.onAppear{
+                        withAnimation(.spring()){
+                            taskManager.isAnimated = true
+                        }
                     }
                 }
                 if(musicManager.arrSongsV2.count > 2){
                     HStack(){
                         ZStack(){
-                            Rectangle().foregroundColor(Color("Green")).frame(width:.infinity).cornerRadius(50).offset(x:+20)
+                            Rectangle().foregroundColor(Color("Green")).frame(width:taskManager.isAnimated ? .infinity : 0).cornerRadius(50).offset(x:+20)
                             HStack(){
                                 Spacer()
                                 Text(musicManager.arrSongsV2[2].singer).foregroundColor(.white).bold().padding(.trailing,0)
                             }
-                        }.frame(width:CGFloat(screenWidth/2.6),height:40).background(Color("Green"))
+                        }.frame(width:taskManager.isAnimated ? CGFloat(screenWidth/2.6) : 0,height:40).background(Color("Green"))
                         Spacer()
+                    }.onAppear{
+                        withAnimation(.spring()){
+                            taskManager.isAnimated = true
+                        }
                     }
                 }
                 

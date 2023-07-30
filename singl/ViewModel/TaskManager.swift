@@ -63,8 +63,11 @@ class TaskManager:ObservableObject{
     @Published var isLoading:Bool = false
     @Published var isAlert:Bool = false
     @Published var msg:String = ""
+    @Published var isAnimated:Bool = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    let timerAnimation = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
    
     func isAlertTrue(){
         isAlert = true

@@ -54,6 +54,7 @@ struct TunerData {
     var noteOctave: Int = 1
     var renewTime: Bool = false
     var answerNoteMonitoring:[String] = ["-","-","-","-","-","-","-","-","-","-",]
+    var voiceInputMonitoring:[Float] = [20,20,20,20,20,20,20]
 }
 
 struct NoteData {
