@@ -10,13 +10,16 @@
 		BE19257F2A696CBD000701DD /* VocalTypeTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */; };
 		BE1925812A697906000701DD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1925802A697906000701DD /* ImagePicker.swift */; };
 		BE1925832A697A13000701DD /* SongRecomendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1925822A697A13000701DD /* SongRecomendationView.swift */; };
+		BE20A88A2A8F58CF00D76844 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE20A8892A8F58CF00D76844 /* TaskModel.swift */; };
 		BE3C02372A6D313F0028016C /* SongRecomendationShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */; };
+		BE59B77B2A935BBA00D74197 /* ConverterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE59B77A2A935BBA00D74197 /* ConverterManager.swift */; };
 		BE5A0D642A717F12001BFA70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE5A0D632A717F12001BFA70 /* Assets.xcassets */; };
 		BE647D512A652C340013185A /* singlApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE647D502A652C340013185A /* singlApp.swift */; };
 		BE647D602A652C830013185A /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D5F2A652C830013185A /* AudioKit */; };
 		BE647D632A652C9F0013185A /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D622A652C9F0013185A /* SoundpipeAudioKit */; };
 		BE647D662A652CB30013185A /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D652A652CB30013185A /* AudioKitUI */; };
 		BE647D692A652CBE0013185A /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = BE647D682A652CBE0013185A /* AudioKitEX */; };
+		BE6F93B32A90643900582875 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = BE6F93B22A90643900582875 /* .swiftlint.yml */; };
 		BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88B2A66739F00725CCD /* TunerManager.swift */; };
 		BEC5D88E2A6673B500725CCD /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D88D2A6673B500725CCD /* SplashView.swift */; };
 		BEC5D8902A6673D400725CCD /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = BEC5D88F2A6673D400725CCD /* Sounds */; };
@@ -31,7 +34,6 @@
 		BEC5D8A22A667D6100725CCD /* VocalRangesTestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */; };
 		BEC5D8A42A668A1A00725CCD /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A32A668A1A00725CCD /* DashboardView.swift */; };
 		BEC5D8A82A668A2B00725CCD /* SongConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */; };
-		BEC5D8AA2A668B3100725CCD /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8A92A668B3100725CCD /* TaskModel.swift */; };
 		BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */; };
 		BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */; };
 		BED2D7432A6A7B2500C033DB /* Keyboard in Frameworks */ = {isa = PBXBuildFile; productRef = BED2D7422A6A7B2500C033DB /* Keyboard */; };
@@ -46,11 +48,14 @@
 		BE19257E2A696CBD000701DD /* VocalTypeTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalTypeTestResultView.swift; sourceTree = "<group>"; };
 		BE1925802A697906000701DD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BE1925822A697A13000701DD /* SongRecomendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRecomendationView.swift; sourceTree = "<group>"; };
+		BE20A8892A8F58CF00D76844 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongRecomendationShareView.swift; sourceTree = "<group>"; };
+		BE59B77A2A935BBA00D74197 /* ConverterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterManager.swift; sourceTree = "<group>"; };
 		BE5A0D612A716EBE001BFA70 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BE5A0D632A717F12001BFA70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE647D4D2A652C340013185A /* singl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = singl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE647D502A652C340013185A /* singlApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = singlApp.swift; sourceTree = "<group>"; };
+		BE6F93B22A90643900582875 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		BEC5D88B2A66739F00725CCD /* TunerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunerManager.swift; sourceTree = "<group>"; };
 		BEC5D88D2A6673B500725CCD /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		BEC5D88F2A6673D400725CCD /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
@@ -65,7 +70,6 @@
 		BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocalRangesTestResultView.swift; sourceTree = "<group>"; };
 		BEC5D8A32A668A1A00725CCD /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongConverterView.swift; sourceTree = "<group>"; };
-		BEC5D8A92A668B3100725CCD /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		BEC5D8AB2A6693FA00725CCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmpVisualizerView.swift; sourceTree = "<group>"; };
 		BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 		BE647D442A652C340013185A = {
 			isa = PBXGroup;
 			children = (
+				BE6F93B22A90643900582875 /* .swiftlint.yml */,
 				BEC5D88F2A6673D400725CCD /* Sounds */,
 				BE647D4F2A652C340013185A /* singl */,
 				BE647D4E2A652C340013185A /* Products */,
@@ -117,8 +122,8 @@
 				BEC5D8AB2A6693FA00725CCD /* Info.plist */,
 				BE647D502A652C340013185A /* singlApp.swift */,
 				BEC5D8882A66725000725CCD /* Model */,
-				BEC5D8892A66726500725CCD /* ViewModel */,
 				BEC5D88A2A66727300725CCD /* View */,
+				BEC5D8892A66726500725CCD /* ViewModel */,
 				BE647D562A652C350013185A /* Preview Content */,
 			);
 			path = singl;
@@ -139,7 +144,7 @@
 				BEC5D8952A66754F00725CCD /* TunerModel.swift */,
 				BEC5D8972A6675AC00725CCD /* EndpointModel.swift */,
 				BEFA55CD2A66DAB90034C48A /* MusicModel.swift */,
-				BEC5D8A92A668B3100725CCD /* TaskModel.swift */,
+				BE20A8892A8F58CF00D76844 /* TaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				BEC5D88B2A66739F00725CCD /* TunerManager.swift */,
+				BE59B77A2A935BBA00D74197 /* ConverterManager.swift */,
 				BEFA55CB2A66D86A0034C48A /* MusicManager.swift */,
 				BEC5D89D2A667A7D00725CCD /* AudioManager.swift */,
 				BEC5D8992A6676CB00725CCD /* TaskManager.swift */,
@@ -159,7 +165,7 @@
 		BEC5D88A2A66727300725CCD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BEC5D88D2A6673B500725CCD /* SplashView.swift */,
+				BEC5D8932A6674A600725CCD /* HomeView.swift */,
 				BEC5D8AE2A6698AE00725CCD /* GetStartedView.swift */,
 				BEC5D8912A6674A000725CCD /* UseHeadphonesViews.swift */,
 				BEC5D89B2A667A3100725CCD /* VocalTypeTestView.swift */,
@@ -167,13 +173,13 @@
 				BEC5D8AC2A6695A000725CCD /* AmpVisualizerView.swift */,
 				BEC5D89F2A667D5B00725CCD /* VocalRangesTestView.swift */,
 				BEC5D8A12A667D6100725CCD /* VocalRangesTestResultView.swift */,
-				BEC5D8932A6674A600725CCD /* HomeView.swift */,
-				BE1925822A697A13000701DD /* SongRecomendationView.swift */,
-				BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */,
 				BEC5D8A72A668A2B00725CCD /* SongConverterView.swift */,
 				BEC5D8A32A668A1A00725CCD /* DashboardView.swift */,
 				BE1925802A697906000701DD /* ImagePicker.swift */,
+				BE3C02362A6D313F0028016C /* SongRecomendationShareView.swift */,
+				BE1925822A697A13000701DD /* SongRecomendationView.swift */,
 				BEFA55CF2A66E70D0034C48A /* ShimmerView.swift */,
+				BEC5D88D2A6673B500725CCD /* SplashView.swift */,
 				BED62D8E2A76939700527261 /* ContentView.swift */,
 			);
 			path = View;
@@ -189,6 +195,7 @@
 				BE647D492A652C340013185A /* Sources */,
 				BE647D4A2A652C340013185A /* Frameworks */,
 				BE647D4B2A652C340013185A /* Resources */,
+				BE20A8882A8F50F900D76844 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -251,12 +258,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE6F93B32A90643900582875 /* .swiftlint.yml in Resources */,
 				BE5A0D642A717F12001BFA70 /* Assets.xcassets in Resources */,
 				BEC5D8902A6673D400725CCD /* Sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BE20A8882A8F50F900D76844 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE647D492A652C340013185A /* Sources */ = {
@@ -268,16 +297,17 @@
 				BE3C02372A6D313F0028016C /* SongRecomendationShareView.swift in Sources */,
 				BEC5D8982A6675AC00725CCD /* EndpointModel.swift in Sources */,
 				BEC5D88C2A66739F00725CCD /* TunerManager.swift in Sources */,
+				BE59B77B2A935BBA00D74197 /* ConverterManager.swift in Sources */,
 				BEC5D8A42A668A1A00725CCD /* DashboardView.swift in Sources */,
 				BEC5D8962A66754F00725CCD /* TunerModel.swift in Sources */,
 				BEC5D8A02A667D5B00725CCD /* VocalRangesTestView.swift in Sources */,
 				BEC5D8AF2A6698AE00725CCD /* GetStartedView.swift in Sources */,
 				BEFA55CE2A66DAB90034C48A /* MusicModel.swift in Sources */,
+				BE20A88A2A8F58CF00D76844 /* TaskModel.swift in Sources */,
 				BED62D8F2A76939700527261 /* ContentView.swift in Sources */,
 				BE19257F2A696CBD000701DD /* VocalTypeTestResultView.swift in Sources */,
 				BEC5D8AD2A6695A000725CCD /* AmpVisualizerView.swift in Sources */,
 				BEFA55CC2A66D86A0034C48A /* MusicManager.swift in Sources */,
-				BEC5D8AA2A668B3100725CCD /* TaskModel.swift in Sources */,
 				BEC5D8922A6674A000725CCD /* UseHeadphonesViews.swift in Sources */,
 				BEC5D8942A6674A600725CCD /* HomeView.swift in Sources */,
 				BEC5D89C2A667A3100725CCD /* VocalTypeTestView.swift in Sources */,
@@ -436,7 +466,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,7 +511,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

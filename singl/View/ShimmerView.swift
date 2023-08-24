@@ -1,8 +1,6 @@
 import SwiftUI
-
 struct ShimmerView: View {
     @State private var isAnimating = false
-    
     var body: some View {
         Rectangle()
             .background(.white)

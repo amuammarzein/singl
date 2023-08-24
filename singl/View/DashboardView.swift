@@ -4,59 +4,49 @@
 //
 //  Created by Aang Muammar Zein on 18/07/23.
 //
-
 import SwiftUI
-
 struct DashboardView: View {
-    @StateObject var taskManager:TaskManager = TaskManager()
-    @StateObject var musicManager:MusicManager = MusicManager()
-    
+    @EnvironmentObject var router: Router
+    @StateObject var taskManager: TaskManager = TaskManager()
+    @StateObject var musicManager: MusicManager = MusicManager()
     @State private var isImagePickerPresented = false
     @State private var selectedImage: UIImage?
     @AppStorage("profilePhoto") var profilePhotoData: Data?
-    
-    
     @State private var isTrue = true
     @State private var isFalse = false
-    
-    //    @EnvironmentObject var router: Router
-    
     func saveProfilePhoto() {
-        if let selectedImage = selectedImage,
-           let profilePhotoData = selectedImage.jpegData(compressionQuality: 0.8) {
+        if (selectedImage != nil),
+           let profilePhotoData = selectedImage!.jpegData(compressionQuality: 0.8) {
             self.profilePhotoData = profilePhotoData
         }
     }
-    
     var body: some View {
-        VStack(){
-            if(!taskManager.isDashboard){
+        VStack {
+            if !taskManager.isDashboard {
                 VocalRangesTestResultView()
-            }else if(taskManager.isSong){
-                SongRecomendationView(isSinger: $isFalse)
-            }else if(taskManager.isSinger){
-                SongRecomendationView(isSinger: $isTrue)
-            }else{
-                VStack(){
-                    ZStack(){
-                        VStack(){
-                            HStack(){
+            } else if taskManager.isSong {
+                SongRecomendationView(isSinger: isFalse)
+            } else if taskManager.isSinger {
+                SongRecomendationView(isSinger: isTrue)
+            } else {
+                VStack {
+                    ZStack {
+                        VStack {
+                            HStack {
                                 Spacer()
-                                Image("HomeTop").resizable().scaledToFit().frame(width:250)
+                                Image("HomeTop").resizable().scaledToFit().frame(width: 250)
                             }
                             Spacer()
                         }.ignoresSafeArea()
-                        ScrollView(){
-                            
-                            VStack(){
-                                VStack(){
-                                    
-                                    HStack(){
+                        ScrollView {
+                            VStack {
+                                VStack {
+                                    HStack {
                                         Button(
-                                            action:{
+                                            action: {
                                                 taskManager.isEditTrue()
                                             }
-                                        ){
+                                        ) {
                                             if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
                                                 Image(uiImage: profilePhoto)
                                                     .resizable()
@@ -69,44 +59,35 @@ struct DashboardView: View {
                                                     .clipShape(Circle())
                                             }
                                             Text(taskManager.fullName).font(.body).foregroundColor(.white)
-                                            
-                                            Image(systemName:"pencil").font(.body).foregroundColor(.white)
+                                            Image(systemName: "pencil").font(.body).foregroundColor(.white)
                                         }
                                         Spacer()
-                                    }.padding(.top,10)
+                                    }.padding(.top, 10)
                                         .sheet(isPresented: $taskManager.isEdit) {
-                                            VStack(alignment:.leading, spacing:20){
-                                                
-                                                HStack(){
+                                            VStack(alignment: .leading, spacing: 20) {
+                                                HStack {
                                                     Button(
-                                                        action:{
+                                                        action: {
                                                             taskManager.isEditFalse()
-                                                        }){
+                                                        }) {
                                                             Text("Cancel").font(.body).foregroundColor(.red)
                                                         }
                                                     Spacer()
                                                     Text("Edit Profile").font(.body).bold()
                                                     Spacer()
-                                                    if(taskManager.isLoading){
+                                                    if taskManager.isLoading {
                                                         ProgressView()
                                                             .progressViewStyle(CircularProgressViewStyle(tint: .black)).padding(0).font(.title).fontWeight(.none)
-                                                    }else{
+                                                    } else {
                                                         Button(
-                                                            action:{
-                                                                
-                                                                taskManager.isEditFalse()
-                                                            }){
+                                                            action: {}) {
                                                                 Text("Done").font(.body)
                                                             }
                                                     }
-                                                    
-                                                }.padding(.horizontal,20)
-                                                
-                                                Rectangle().foregroundColor(.black.opacity(0.2)).frame(height:0.5)
-                                                
-                                                VStack(){
-                                                    VStack(alignment:.center){
-                                                        
+                                                }.padding(.horizontal, 20)
+                                                Rectangle().foregroundColor(.black.opacity(0.2)).frame(height: 0.5)
+                                                VStack {
+                                                    VStack(alignment: .center) {
                                                         if let profilePhotoData = profilePhotoData, let profilePhoto = UIImage(data: profilePhotoData) {
                                                             Image(uiImage: profilePhoto)
                                                                 .resizable()
@@ -118,137 +99,114 @@ struct DashboardView: View {
                                                                 .frame(width: 100, height: 100)
                                                                 .clipShape(Circle())
                                                         }
-                                                        
-                                                        
                                                         Button(
-                                                            action :{
+                                                            action: {
                                                                 isImagePickerPresented = true
                                                             }
-                                                        ){
+                                                        ) {
                                                             Text("Edit picture or avatar").font(.callout)
                                                         }
-                                                    }.padding(.bottom,20).sheet(isPresented: $isImagePickerPresented, onDismiss: saveProfilePhoto) {
+                                                    }.padding(.bottom, 20).sheet(isPresented: $isImagePickerPresented, onDismiss: saveProfilePhoto) {
                                                         ImagePicker(selectedImage: $selectedImage)
                                                     }
-                                                    
-                                                    
-                                                    
-                                                    HStack(){
+                                                    HStack {
                                                         Text("Full Name").foregroundColor(.black).font(.body)
                                                         Spacer()
-                                                    }.padding(.bottom,3)
+                                                    }.padding(.bottom, 3)
                                                     TextField("", text: $taskManager.fullName).font(.body).padding()
                                                         .background(
                                                             RoundedRectangle(cornerRadius: 10)
                                                                 .stroke(.black, lineWidth: 1.5)
                                                         ).foregroundColor(.black).accentColor(.black)
-                                                  
                                                     Spacer()
-
-                                                    
-                                                    HStack(){
+                                                    HStack {
                                                         Text("Converter URL").foregroundColor(.black).font(.body)
                                                         Spacer()
-                                                    }.padding(.bottom,3)
+                                                    }.padding(.bottom, 3)
                                                     TextField("", text: $taskManager.converterURL).font(.body).padding()
                                                         .background(
                                                             RoundedRectangle(cornerRadius: 10)
                                                                 .stroke(.black, lineWidth: 1.5)
                                                         ).foregroundColor(.black).accentColor(.black)
-                                                    
-                                                }.padding(.horizontal,20)
-                                                
-                                                
-                                                
-                                            }.padding(.vertical,20).frame(maxHeight:.infinity).background(.white).presentationDetents(
+                                                }.padding(.horizontal, 20)
+                                            }.padding(.vertical, 20).frame(maxHeight: .infinity).background(.white).presentationDetents(
                                                 [.large, .large]
                                             ).cornerRadius(10)
                                         }
-                                    
-                                    HStack(){
+                                    HStack {
                                         Text("Dashboard").font(.title2).foregroundColor(.white).bold()
                                         Spacer()
-                                    }.padding(.top,10)
+                                    }.padding(.top, 10)
                                     Button(
-                                        action:{
+                                        action: {
                                             taskManager.isMenuFalse()
-                                            taskManager.isDashboardFalse()
+//                                            taskManager.isDashboardFalse()
+                                            router.path.append(Destination.vocalRangesTestResultView)
                                         }
-                                    ){
-                                        VStack(){
-                                            ZStack(){
-                                                VStack(spacing:5){
-                                                    HStack(){
-                                                        Text("Your Vocal Range:").font(.body).foregroundColor(.black)
+                                    ) {
+                                        VStack {
+                                            ZStack {
+                                                VStack {
+                                                    HStack {
+                                                        Spacer()
+                                                        Image("LogoText").resizable().scaledToFit().frame(width: 60)
+                                                    }.padding(20)
+                                                    Spacer()
+                                                    HStack {
+                                                        Spacer()
+                                                        Image("HomeCard").resizable().scaledToFit().frame(width: 100)
+                                                    }
+                                                }
+                                                VStack(spacing: 5) {
+                                                    HStack {
+                                                        Text("Your Vocal Range: ").font(.body).foregroundColor(.black)
                                                         Spacer()
                                                     }
-                                                    HStack(){
+                                                    HStack {
                                                         Text(taskManager.vocalRange).font(.title).fontWeight(.heavy).foregroundColor(.black)
                                                         Spacer()
-                                                    }.padding(.bottom,20)
-                                                    HStack(){
-                                                        Text("Your Vocal Type:").font(.body).foregroundColor(.black)
+                                                    }.padding(.bottom, 20)
+                                                    HStack {
+                                                        Text("Your Vocal Type: ").font(.body).foregroundColor(.black)
                                                         Spacer()
                                                     }
-                                                    HStack(){
+                                                    HStack {
                                                         Text(taskManager.vocalType).font(.title).fontWeight(.heavy).foregroundColor(.black)
                                                         Spacer()
                                                     }
-                                                }.padding(20).padding(.top,20).padding(.bottom,20)
-                                                VStack(){
-                                                    HStack(){
-                                                        Spacer()
-                                                        Image("LogoText").resizable().scaledToFit().frame(width:60)
-                                                    }.padding(20)
-                                                    Spacer()
-                                                    HStack(){
-                                                        Spacer()
-                                                        Image("HomeCard").resizable().scaledToFit().frame(width:100)
-                                                    }
-                                                }
+                                                }.padding(20).padding(.top, 20).padding(.bottom, 20)
                                             }
-                                        }.frame(maxWidth:.infinity).background(.white).cornerRadius(20)
+                                        }.frame(maxWidth: .infinity).background(.white).cornerRadius(20)
                                     }
-                                    
-                                    HStack(){
+                                    HStack {
                                         Text("Top 3 Song Recommendation").font(.body).bold().foregroundColor(.white)
                                         Spacer()
-                                        Button(action:{
-                                            taskManager.isSongTrue()
-                                        }){
-                                            Text("See All").font(.callout).foregroundColor(.white.opacity(0.6))
-                                        }
-                                    }.padding(.top,10)
-                                    
-                                    if(musicManager.isLoading){
-                                        
-                                        HStack(spacing:5){
+                                    }.padding(.top, 10)
+                                    if musicManager.isLoading {
+                                        HStack(spacing: 5) {
                                             ProgressView()
                                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                                 .font(.body)
-                                        }.frame(height:170)
-                                    }else{
-                                        
+                                        }.frame(height: 170)
+                                    } else {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
                                                 ForEach(musicManager.arrSongsV2, id: \.self) { item in
                                                     Button(
-                                                        action:{
+                                                        action: {
                                                             musicManager.openAppleMusicSongV2(song: item)
                                                         }
-                                                    ){
-                                                        VStack(){
-                                                            
+                                                    ) {
+                                                        VStack {
                                                             AsyncImage(url: item.imgSong) { image in
                                                                 image
                                                                     .resizable()
-                                                                    .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
+                                                                    .aspectRatio(contentMode: .fit).frame(width: 100, height: 100).cornerRadius(15)
                                                             } placeholder: {
-                                                                ShimmerView().frame(width:100,height:100).cornerRadius(15)
+                                                                ShimmerView().frame(width: 100, height: 100).cornerRadius(15)
                                                             }
-                                                            
-                                                            HStack(){
-                                                                VStack(alignment:.leading){
+                                                            HStack {
+                                                                VStack(alignment: .leading) {
                                                                     Text(item.title).lineLimit(1).font(.body).foregroundColor(.white)
                                                                     Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
                                                                 }
@@ -256,98 +214,65 @@ struct DashboardView: View {
                                                             }
                                                         }
                                                     }.foregroundColor(.black)
-                                                }.frame(width:100)
-                                                
+                                                }.frame(width: 100)
                                             }
-                                            
                                         }
-                                        
-                                        
                                     }
-                                    
-                                    HStack(){
+                                    HStack {
                                         Text("Singers with similar vocals to yours").font(.body).bold().foregroundColor(.white)
                                         Spacer()
-                                        Button(action:{
-                                            taskManager.isSingerTrue()
-                                        }){
-                                            Text("See All").font(.callout).foregroundColor(.white.opacity(0.6))
-                                        }
-                                    }.padding(.top,10)
-                                    
-                                    if(musicManager.isLoading){
-                                        
-                                        HStack(spacing:5){
+                                    }.padding(.top, 10)
+                                    if musicManager.isLoading {
+                                        HStack(spacing: 5) {
                                             ProgressView()
                                                 .progressViewStyle(CircularProgressViewStyle(tint: .white))
                                                 .font(.body)
-                                        }.frame(height:170)
-                                    }else{
-                                        
+                                        }.frame(height: 170)
+                                    } else {
                                         ScrollView(.horizontal, showsIndicators: false) {
                                             HStack(spacing: 10) {
                                                 ForEach(musicManager.arrSongsV2, id: \.self) { item in
                                                     Button(
-                                                        action:{
+                                                        action: {
                                                             musicManager.openAppleMusicSingerV2(artist: item)
                                                         }
-                                                    ){
-                                                        VStack(){
-                                                            
+                                                    ) {
+                                                        VStack {
                                                             AsyncImage(url: item.imgSinger) { image in
                                                                 image
                                                                     .resizable()
-                                                                    .aspectRatio(contentMode: .fit).frame(width:100,height:100).cornerRadius(15)
+                                                                    .aspectRatio(contentMode: .fit).frame(width: 100, height: 100).cornerRadius(15)
                                                             } placeholder: {
-                                                                ShimmerView().frame(width:100,height:100).cornerRadius(15)
+                                                                ShimmerView().frame(width: 100, height: 100).cornerRadius(15)
                                                             }
-                                                            
-                                                            VStack(alignment:.center){
-                                                                    Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
-                                                                 
+                                                            VStack(alignment: .center) {
+                                                                Text(item.singer).lineLimit(1).font(.body).foregroundColor(.white)
                                                             }
                                                         }.foregroundColor(.black)
-                                                    }.frame(width:100)
+                                                    }.frame(width: 100)
                                                 }
                                             }
-                                            
                                         }
-                                        
-                                        
                                     }
-                                    
                                 }
-                            }.padding(.horizontal,30).padding(.bottom,130)
-                            
-                            
-                        }.padding(.top,0).refreshable(){
+                            }.padding(.horizontal, 30).padding(.bottom, 130)
+                        }.padding(.top, 0).refreshable {
                             musicManager.getSongV2()
-                            //                            musicManager.getSong(limit:5)
-                            //                            musicManager.getSinger(limit:5)
                         }
-                    }.background(Color("Blue")).frame(maxWidth:.infinity, maxHeight:.infinity)
-                }.onAppear{
+                    }.background(Color("Blue")).frame(maxWidth: .infinity, maxHeight: .infinity)
+                }.onAppear {
                     taskManager.isMenuTrue()
-                    print("***")
-                    print(taskManager.isMenu)
                     taskManager.isTestFalse()
                     taskManager.isSkipTrue()
                     musicManager.getSongV2()
-                    
-                    //                    print("***")
-                    //                    print(router.path)
-                    //                    print(router.path.count)
-                    //                    musicManager.getSong(limit:5)
-                    //                    musicManager.getSinger(limit:5)
                 }
             }
-        }.onAppear{
+        }
+        .navigationBarBackButtonHidden(true)
+        .onAppear {
             taskManager.isDashboardTrue()
-            //            taskManager.vocalType = "Bass"
-            //            taskManager.vocalRange = "E2 - E4"
         }
     }
-    
 }
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {

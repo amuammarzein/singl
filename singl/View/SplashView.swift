@@ -1,34 +1,25 @@
 import SwiftUI
-
 struct SplashView: View {
-    @StateObject var taskManager:TaskManager = TaskManager()
-    
+    @EnvironmentObject var router: Router
+    @StateObject var taskManager: TaskManager = TaskManager()
     var body: some View {
-        if(taskManager.isActive){
-            if(taskManager.isSkip){
-                HomeView()
-            }else{
-                GetStartedView()
-            }
-        } else {
-            VStack(spacing:20) {
-                
-                Image("Logo").resizable().scaledToFit().frame(width: 100)
-                Image("LogoText").resizable().scaledToFit().frame(width: 100)
-                
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    withAnimation {
-                        taskManager.isActiveTrue()
+        VStack(spacing: 20) {
+            Image("Logo").resizable().scaledToFit().frame(width: 100)
+            Image("LogoText").resizable().scaledToFit().frame(width: 100)
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                withAnimation {
+                    if taskManager.isSkip {
+                        router.path.append(Destination.homeView)
+                    } else {
+                        router.path.append(Destination.getStartedView)
                     }
                 }
             }
         }
-        
     }
 }
-
 struct SplashView_Previews: PreviewProvider {
     static var previews: some View {
         SplashView()
